@@ -1,0 +1,24 @@
+{
+  "name": "codeflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeflow-dev/codeflow.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/codeflow-dev/codeflow/issues"
+  },
+  "homepage": "https://github.com/codeflow-dev/codeflow#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.3.9"
+  }
+}

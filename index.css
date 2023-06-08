@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .navbar-link {
+        @apply inline px-6;
+    }
+    
+    .landing-email-input {
+        background-color: #1D2331;
+    }
+
+    .btn-landing {
+        background-color: #6E6AFF;
+        @apply py-4 px-6 rounded-md;
+    }
+    
+    .sitemap li {
+        @apply my-1 text-white/75;
+    }
+
+    .section-border {
+        @apply border-t-2;
+        border-color: #303030;
+    }
+
+    .bg-landing {
+        background: radial-gradient(62.01% 62.01% at 50% 37.99%, #101425 18.16%, #0E0D12 100%);
+    }
+
+    .bg-solid {
+        background: #0E0D12;
+    }
+}
