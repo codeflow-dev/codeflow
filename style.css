@@ -9,20 +9,3 @@
   background-attachment: fixed;
   background-size: contain;
 }
-.navbr {
-  display: flex;
-  align-items: center;
-  margin-left: 50px;
-  margin-top: 30px;
-}
-.extra {
-  margin-left: 60px;
-  color: grey;
-}
-.first {
-  color: white;
-  background: #1e293b;
-  border: 1px solid #101425;
-  border-radius: 30px;
-  padding: 8px 30px 8px 30px;
-}
