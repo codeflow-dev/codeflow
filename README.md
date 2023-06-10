@@ -7,6 +7,9 @@ npm install
 ```
 
 To start live server, run the following command:
+
 ```
 npm run dev
 ```
+
+Also you must install Prettier Extension in vscode.
