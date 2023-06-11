@@ -1,99 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>codeflow</title>
+        <link rel="stylesheet" href="dashboard.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>codeflow</title>
-    <link rel="stylesheet" href="dashboard.css" />
-</head>
-
-<body>
-    <div class="min-h-screen max-h-screen flex overflow-hidden bg-blue-800 text-white">
-        <nav class="bg-blue-500 w-64 flex flex-col pt-5 border-r border-blue-300">
-            <div class="flex w-full justify-between px-4">
-                <h2 class="text-xl font-medium">codeflow</h2>
-                <img src="assets/menu.svg" alt="Menu" />
-            </div>
-            <h6 class="mt-9 mb-4 mx-4 text-sm">Main</h6>
-            <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium">
-                <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
-                Overview
-            </div>
-            <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium">
-                <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
-                Contests
-            </div>
-            <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium bg-blue-300">
-                <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
-                Problemset
-            </div>
-        </nav>
-        <div class="flex-1 flex flex-col">
-            <div class="bg-blue-500 py-4 px-7 font-medium text-lg border-b border-blue-300">
-                <h1>Problemset</h1>
-            </div>
-            <div class="p-12 w-full">
-                <div class="py-8 bg-blue-400 rounded-lg border-blue-200 border">
-                    <table class="table-auto w-full border-collapse">
-                        <thead>
-                            <tr>
-                                <th>Problem ID</th>
-                                <th>Problem Title</th>
-                                <th>Rating</th>
-                                <th>Solved by</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-blue-300">
-                            <tr>
-                                <td>11A</td>
-                                <td>Test Title</td>
-                                <td>1200</td>
-                                <td>33300</td>
-                            </tr>
-                            <tr>
-                                <td>11A</td>
-                                <td>Test Title</td>
-                                <td>1200</td>
-                                <td>33300</td>
-                            </tr>
-                            <tr>
-                                <td>11A</td>
-                                <td>Test Title</td>
-                                <td>1200</td>
-                                <td>33300</td>
-                            </tr>
-                            <tr>
-                                <td>11A</td>
-                                <td>Test Title</td>
-                                <td>1200</td>
-                                <td>33300</td>
-                            </tr>
-                            <tr>
-                                <td>11A</td>
-                                <td>Test Title</td>
-                                <td>1200</td>
-                                <td>33300</td>
-                            </tr>
-                            <tr>
-                                <td>11A</td>
-                                <td>Test Title</td>
-                                <td>1200</td>
-                                <td>33300</td>
-                            </tr>
-                            <tr>
-                                <td>11A</td>
-                                <td>Test Title</td>
-                                <td>1200</td>
-                                <td>33300</td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <body>
+        <div class="min-h-screen max-h-screen flex overflow-hidden bg-blue-800 text-white">
+            <nav class="bg-blue-500 w-64 flex flex-col pt-5 border-r border-blue-300">
+                <div class="flex w-full justify-between px-4">
+                    <h2 class="text-xl font-medium">codeflow</h2>
+                    <img src="assets/menu.svg" alt="Menu" />
+                </div>
+                <h6 class="mt-9 mb-4 mx-4 text-sm">Main</h6>
+                <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium">
+                    <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
+                    Overview
+                </div>
+                <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium">
+                    <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
+                    <a href="contests.html">Contests</a>
+                </div>
+                <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium bg-blue-300">
+                    <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
+                    <a href="problemset.html">Problemset</a>
+                </div>
+            </nav>
+            <div class="flex-1 flex flex-col">
+                <div class="bg-blue-500 py-4 px-7 font-medium text-lg border-b border-blue-300">
+                    <h1>Problemset</h1>
+                </div>
+                <div class="p-12 w-full">
+                    <div class="py-8 bg-blue-400 rounded-lg border-blue-200 border">
+                        <table class="table-auto w-full border-collapse">
+                            <thead>
+                                <tr>
+                                    <th>Problem ID</th>
+                                    <th>Problem Title</th>
+                                    <th>Rating</th>
+                                    <th>Solved by</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-blue-300">
+                                <tr>
+                                    <td>11A</td>
+                                    <td>Test Title</td>
+                                    <td>1200</td>
+                                    <td>33300</td>
+                                </tr>
+                                <tr>
+                                    <td>11A</td>
+                                    <td>Test Title</td>
+                                    <td>1200</td>
+                                    <td>33300</td>
+                                </tr>
+                                <tr>
+                                    <td>11A</td>
+                                    <td>Test Title</td>
+                                    <td>1200</td>
+                                    <td>33300</td>
+                                </tr>
+                                <tr>
+                                    <td>11A</td>
+                                    <td>Test Title</td>
+                                    <td>1200</td>
+                                    <td>33300</td>
+                                </tr>
+                                <tr>
+                                    <td>11A</td>
+                                    <td>Test Title</td>
+                                    <td>1200</td>
+                                    <td>33300</td>
+                                </tr>
+                                <tr>
+                                    <td>11A</td>
+                                    <td>Test Title</td>
+                                    <td>1200</td>
+                                    <td>33300</td>
+                                </tr>
+                                <tr>
+                                    <td>11A</td>
+                                    <td>Test Title</td>
+                                    <td>1200</td>
+                                    <td>33300</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>
