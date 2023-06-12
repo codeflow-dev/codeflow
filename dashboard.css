@@ -30,3 +30,9 @@
     border-radius: 30px;
     padding: 8px 30px 8px 30px;
 }
+tr:nth-child(even):hover {
+    background-color: #151b31;
+}
+tr:nth-child(odd):hover {
+    background-color: #151b31;
+}
