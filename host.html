@@ -34,7 +34,7 @@
                     <h1>Contest</h1>
                     <h2 class="text-sm" style="color: rgba(255, 255, 255, 0.7)">/ Host a contest</h2>
                 </div>
-                <div class="p-12 w-full">
+                <div class="p-12 w-full overflow-y-scroll">
                     <div class="flex justify-between items-center">
                         <h1 class="text-2xl">Host a contest</h1>
                         <div>
@@ -42,7 +42,7 @@
                             <button class="btn-primary">Schedule</button>
                         </div>
                     </div>
-                    <div class="flex items-center">
+                    <div class="flex items-center mt-5">
                         <label class="w-52" for="level">Contest Level</label>
                         <select class="input-text" id="level">
                             <option value="beginner">Beginner</option>
@@ -50,13 +50,125 @@
                             <option value="expert">Expert</option>
                         </select>
                     </div>
+                    <div class="flex items-center mt-5">
+                        <label class="w-52" for="date">Contest Date</label>
+                        <input type="datetime-local" class="input-text" id="date" />
+                    </div>
+                    <div class="flex items-center mt-5">
+                        <label class="w-52" for="duration">Contest Duration</label>
+                        <input id="duration" type="text" class="input-text" />
+                    </div>
+                    <div class="flex items-center mt-5">
+                        <label class="w-52" for="name">Contest Name</label>
+                        <input
+                            type="text"
+                            class="input-text disabled:opacity-60 cursor-not-allowed"
+                            disabled
+                            value="Codeflow Expert Contest 1" />
+                    </div>
+                    <div>
+                        <h1 class="text-xl mt-8">Problems</h1>
+                        <div class="mt-5">
+                            <ul class="flex items-center">
+                                <li class="mr-36 ml-32 border border-blue-900 rounded-2xl py-0.5 px-8">A</li>
+                                <li class="mr-36" style="color: rgba(255, 255, 255, 0.7)">B</li>
+                                <li class="mr-36" style="color: rgba(255, 255, 255, 0.7)">C</li>
+                                <li class="mr-36" style="color: rgba(255, 255, 255, 0.7)">D</li>
+                                <li class="mr-36" style="color: rgba(255, 255, 255, 0.7)">E</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-14">
+                        <label class="w-52" for="title">Problem Title</label>
+                        <input id="title" type="text" class="input-text" placeholder="A title" />
+                    </div>
+                    <div class="mt-4">
+                        <label class="w-52 text-lg" for="statement">Problem Statement</label>
+                    </div>
+                    <div class="mt-5">
+                        <textarea
+                            id="statement"
+                            rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Write the problem statement..."></textarea>
+                    </div>
+                    <div class="mt-5">
+                        <label class="w-52 text-lg" for="testcase">Test case inputs</label>
+                    </div>
                     <div class="flex items-center">
-                        <label class="w-52" for="level">Contest Level</label>
-                        <select class="input-text" id="level">
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="expert">Expert</option>
-                        </select>
+                        <div class="mt-3">
+                            <button class="btn-primary mr-2">Load inputs</button>
+                            <button class="btn-primary">Load outputs</button>
+                        </div>
+                        <h1 class="ml-11 text-sm">The inputs must be separated by 2 blank spaces in a text file.</h1>
+                    </div>
+                    <div class="flex items-center mt-10">
+                        <label class="custom-width mr-9" for="tcNo"
+                            ><h1 class="text-lg">Number of sample test cases</h1></label
+                        >
+                        <input type="number" class="input-text" id="tcNo" />
+                    </div>
+                    <div class="py-12 w-2/3">
+                        <div class="py-8 bg-blue-400 rounded-lg border-blue-200 border">
+                            <table class="table-auto w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th>Input1</th>
+                                        <th>Output1</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-blue-300">
+                                    <tr>
+                                        <td>2</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1 2</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 4</td>
+                                        <td>6</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="py-4 w-2/3">
+                        <div class="py-8 bg-blue-400 rounded-lg border-blue-200 border">
+                            <table class="table-auto w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th>Input2</th>
+                                        <th>Output2</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-blue-300">
+                                    <tr>
+                                        <td>2</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1 2</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 4</td>
+                                        <td>6</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label class="w-52 text-lg" for="ccode">Checker code</label>
+                    </div>
+                    <div class="mt-3">
+                        <textarea
+                            id="ccode"
+                            rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="insert the code"></textarea>
                     </div>
                 </div>
             </div>

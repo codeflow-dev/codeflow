@@ -41,3 +41,6 @@
     border-radius: 30px;
     padding: 8px 30px 8px 30px;
 }
+.custom-width {
+    width: 3;
+}
