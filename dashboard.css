@@ -3,14 +3,20 @@
 @tailwind utilities;
 
 @layer components {
-    thead th {
+    .custom-table {
+        @apply table-auto w-full border-collapse;
+    }
+    .custom-table th {
         @apply border-b dark:border-slate-600 font-medium pt-0 p-4 pl-8 text-slate-400 dark:text-slate-200 text-left;
     }
-    tbody td {
+    .custom-table td {
         @apply border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400;
     }
     .btn-primary {
-        @apply font-semibold bg-indigo-500 py-3 px-5 rounded-md;
+        @apply font-semibold bg-indigo-500 py-2 px-4 rounded-md text-sm;
+    }
+    .btn-secondary {
+        @apply font-semibold bg-blue-200 py-2 px-4 rounded-md text-sm;
     }
     .running-problems a {
         background: #22252f;
@@ -18,7 +24,23 @@
         @apply py-3 px-6 my-1 rounded-md;
     }
     .input-text {
-        @apply h-9 w-72 border-gray-300 border px-2.5 text-sm hover:border-gray-400 focus:outline-none focus:border-gray-500 rounded-md bg-blue-200;
+        @apply h-9 w-72 border-gray-700 border px-2.5 text-sm hover:border-gray-600 focus:outline-none focus:border-gray-500 rounded-md bg-blue-200;
+    }
+    .test-table {
+        @apply table-auto border-collapse font-mono text-left text-sm mt-6;
+        width: 600px;
+    }
+    .test-table th {
+        @apply py-1.5 px-3 bg-blue-200;
+    }
+    .test-table td {
+        @apply py-1.5 px-3;
+        background: #303958;
+    }
+    .test-table > table,
+    td,
+    th {
+        border: 1px solid #5b76a1;
     }
 }
 
