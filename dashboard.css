@@ -37,9 +37,9 @@
         @apply py-1.5 px-3;
         background: #303958;
     }
-    .test-table > table,
-    td,
-    th {
+    .test-table table,
+    .test-table td,
+    .test-table th {
         border: 1px solid #5b76a1;
     }
 }
