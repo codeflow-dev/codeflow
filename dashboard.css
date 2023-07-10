@@ -28,7 +28,7 @@
     }
     .test-table {
         @apply table-auto border-collapse font-mono text-left text-sm mt-6;
-        width: 600px;
+        min-width: 400px;
     }
     .test-table th {
         @apply py-1.5 px-3 bg-blue-200;
@@ -41,6 +41,14 @@
     .test-table td,
     .test-table th {
         border: 1px solid #5b76a1;
+    }
+    #statement h2 {
+        @apply text-lg font-semibold;
+    }
+    #statement p,
+    #statement h1,
+    #statement h2 {
+        @apply my-2;
     }
 }
 
