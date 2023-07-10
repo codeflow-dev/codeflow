@@ -9,7 +9,7 @@ new Chart(ctx, {
         labels: [800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600],
         datasets: [
             {
-                label: "# of Votes",
+                label: "# of Problems",
                 data: [100, 80, 70, 65, 60, 50, 45, 35, 25],
                 borderWidth: 1,
             },
@@ -30,6 +30,7 @@ let chart = new Chart(atx, {
     data: {
         datasets: [
             {
+                label: "Rating",
                 data: [
                     {
                         x: "2023-07-09 00:00:00",
