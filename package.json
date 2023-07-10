@@ -24,6 +24,12 @@
         "vite": "^4.3.9"
     },
     "dependencies": {
+        "@codemirror/lang-cpp": "^6.0.2",
+        "@codemirror/lang-markdown": "^6.2.0",
+        "@codemirror/theme-one-dark": "^6.1.2",
+        "codemirror": "^6.0.1",
+        "marked": "^5.1.0",
+        "marked-katex-extension": "^2.1.0",
         "chart.js": "^4.3.0",
         "chartjs-adapter-moment": "^1.0.1",
         "moment": "^2.29.4"
