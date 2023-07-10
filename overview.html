@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>codeflow</title>
+        <link rel="stylesheet" href="dashboard.css" />
+        <link rel="stylesheet" href="style_alif.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,500;0,600;0,700;0,800;1,200;1,300;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="min-h-screen max-h-screen flex overflow-hidden bg-blue-800 text-white">
+            <nav class="bg-blue-500 w-64 flex flex-col pt-5 border-r border-blue-300">
+                <div class="flex w-full justify-between px-4">
+                    <h2 class="text-xl font-medium">codeflow</h2>
+                    <img src="assets/menu.svg" alt="Menu" />
+                </div>
+                <h6 class="mt-9 mb-4 mx-4 text-sm">Main</h6>
+                <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium bg-blue-300">
+                    <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
+                    <a href="overview.html">Overview</a>
+                </div>
+                <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium">
+                    <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
+                    <a href="contests.html">Contests</a>
+                </div>
+                <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium">
+                    <img class="ml-1.5 mr-2.5" src="assets/overview.svg" alt="Overview" />
+                    <a href="problemset.html">Problemset</a>
+                </div>
+            </nav>
+            <div class="flex-1 flex flex-col">
+                <div class="bg-blue-500 py-4 px-7 font-medium text-lg border-b border-blue-300">
+                    <h1>Overview</h1>
+                </div>
+                <main class="main-container">
+                    <div class="main-title">
+                        <h2>DASHBOARD</h2>
+                    </div>
+                    <div class="main-cards">
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>Rating</h3>
+                                <span class="material-icons-outlined"> star_rate </span>
+                            </div>
+                            <h1>900</h1>
+                        </div>
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>Perticipeted Contests</h3>
+                                <span class="material-icons-outlined"> check_circle </span>
+                            </div>
+                            <h1>10</h1>
+                        </div>
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>Solved Problems</h3>
+                                <span class="material-icons-outlined"> check_circle </span>
+                            </div>
+                            <h1>200</h1>
+                        </div>
+                        <div class="card">
+                            <div class="card-inner">
+                                <h3>Practise Rating</h3>
+                                <span class="material-icons-outlined"> area_chart </span>
+                            </div>
+                            <h1>500</h1>
+                        </div>
+                    </div>
+                    <div class="charts">
+                        <div class="charts-card">
+                            <h2 class="chart-title">Problem Ratings</h2>
+                            <canvas id="bar-chart"></canvas>
+                        </div>
+                        <div class="charts-card">
+                            <h2 class="chart-title">Progress of Ratings</h2>
+                            <canvas id="line-chart"></canvas>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <script type="module" src="scripts_alif.js"></script>
+        </div>
+    </body>
+</html>
