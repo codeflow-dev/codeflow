@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>codeflow</title>
+        <link rel="stylesheet" href="/src/styles/dashboard.css" />
+        <block name="extrahead"></block>
+    </head>
+
+    <body>
+        <div class="min-h-screen max-h-screen flex overflow-hidden bg-blue-800 text-white">
+            <include src="components/sidebar.html"></include>
+            <div class="flex-1 flex flex-col">
+                <div class="bg-blue-500 py-4 px-7 font-medium text-lg border-b border-blue-300">
+                    <h1>Contests</h1>
+                </div>
+                <div class="flex-1 flex overflow-y-hidden">
+                    <block name="body"></block>
+                </div>
+            </div>
+        </div>
+        <block name="extrabody"></block>
+    </body>
+</html>

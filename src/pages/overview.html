@@ -1,0 +1,56 @@
+<extends src="layouts/dashboard.html" locals='{"title": "Vituum + PostHTML"}'>
+    <block name="extrahead">
+        <link rel="stylesheet" href="/src/styles/overview.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    </block>
+    <block name="body">
+        <main class="main-container">
+            <div class="main-title">
+                <h2>DASHBOARD</h2>
+            </div>
+            <div class="main-cards">
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Rating</h3>
+                        <span class="material-icons-outlined"> star_rate </span>
+                    </div>
+                    <h1>900</h1>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Participated Contests</h3>
+                        <span class="material-icons-outlined"> check_circle </span>
+                    </div>
+                    <h1>10</h1>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Solved Problems</h3>
+                        <span class="material-icons-outlined"> check_circle </span>
+                    </div>
+                    <h1>200</h1>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Practice Rating</h3>
+                        <span class="material-icons-outlined"> area_chart </span>
+                    </div>
+                    <h1>500</h1>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <h2 class="chart-title">Problem Ratings</h2>
+                    <canvas id="bar-chart"></canvas>
+                </div>
+                <div class="charts-card">
+                    <h2 class="chart-title">Progress of Ratings</h2>
+                    <canvas id="line-chart"></canvas>
+                </div>
+            </div>
+        </main>
+    </block>
+    <block name="extrabody">
+        <script type="module" src="/src/scripts/overview.js"></script>
+    </block>
+</extends>

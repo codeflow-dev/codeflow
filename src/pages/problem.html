@@ -1,0 +1,92 @@
+<extends src="layouts/problemlayout.html" locals='{"title": "Vituum + PostHTML"}'>
+    <block name="extrahead">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" />
+        <style>
+            .cm-editor {
+                height: 100%;
+            }
+        </style>
+    </block>
+    <block name="body">
+        <div class="bg-blue-600 w-1/2 flex-1 overflow-y-scroll p-6">
+            <h1 class="text-2xl font-semibold text-center">Begin Permutations</h1>
+            <div class="flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                    <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
+                        clip-rule="evenodd" />
+                </svg>
+                <div>1s</div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                    <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
+                        clip-rule="evenodd" />
+                </svg>
+                <div>256 MB</div>
+            </div>
+            <div id="statement"></div>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>Input 1</th>
+                        <th>Output 1</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-blue-300">
+                    <tr class="font-mono">
+                        <td>
+                            <p>2</p>
+                            <p>66 6</p>
+                            <p>4 4</p>
+                        </td>
+                        <td>
+                            <p>2</p>
+                            <p>1 2</p>
+                            <p>3 4</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>Input 1</th>
+                        <th>Output 1</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-blue-300">
+                    <tr class="font-mono">
+                        <td>
+                            <p>2</p>
+                            <p>66 6</p>
+                            <p>4 4</p>
+                        </td>
+                        <td>
+                            <p>2</p>
+                            <p>1 2</p>
+                            <p>3 4</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="w-1/2 flex-1 flex flex-col">
+            <div class="py-2 px-2">
+                <select class="input-text" id="lang">
+                    <option value="cpp">C++20 Clang++ 15.0.7</option>
+                    <option value="python">Python 3.11.3</option>
+                    <option value="java">Java OpenJDK 17.0.7</option>
+                </select>
+            </div>
+            <div id="editor" class="flex-1"></div>
+            <div class="py-2 px-2">
+                <button class="btn-primary">Submit Code</button>
+            </div>
+        </div>
+    </block>
+    <block name="extrabody">
+        <script type="module" src="/src/scripts/problem.js"></script>
+    </block>
+</extends>
