@@ -1,7 +1,8 @@
 import { connect } from "mongoose";
 import express, { json } from "express";
-import authRouter from "./routes/auth.js";
 import dotenv from "dotenv";
+import authRouter from "./routes/auth.js";
+import contestsRouter from "./routes/contests.js";
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ const app = express();
 
 app.use(json());
 
-app.use("/api", [authRouter]);
+app.use("/api", [authRouter, contestsRouter]);
 
 app.listen(port, () => {
     console.log("Server started");

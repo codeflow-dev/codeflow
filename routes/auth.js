@@ -5,11 +5,11 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 const router = Router();
-const secretKey = process.env.SECRET || "development";
+export const secretKey = process.env.SECRET || "development";
 
 router.post("/login", async (req, res) => {
-    const { login, password } = req.body;
     try {
+        const { login, password } = req.body;
         assertStringArray([login, password]);
         let user;
         if (login.includes("@")) {
@@ -32,8 +32,8 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-    const { name, username, email, password } = req.body;
     try {
+        const { name, username, email, password } = req.body;
         assertStringArray([name, username, email, password]);
         const uniq1 = await User.findOne({ email });
         const uniq2 = await User.findOne({ username });

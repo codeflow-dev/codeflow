@@ -9,6 +9,7 @@ const problemSchema = new Schema({
             output: String,
         },
     ],
+    samples: Number,
     checker: String,
 });
 
