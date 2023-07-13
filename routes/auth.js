@@ -22,7 +22,10 @@ router.post("/login", async (req, res) => {
             throw new Error("Wrong password");
         }
         const token = jwt.sign({ user: user.id }, secretKey, { expiresIn: "1d" });
-        res.status(200).json({ token });
+        res.cookie("token", token, {
+            httpOnly: true,
+        });
+        res.sendStatus(200);
     } catch (err) {
         console.error(err);
         res.status(401).json({
