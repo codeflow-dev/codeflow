@@ -5,6 +5,7 @@ const contestSchema = new Schema({
         type: String,
         enum: ["Beginner", "Intermediate", "Expert"],
     },
+    startDate:Date,
     round: Number,
     setter: {
         type: SchemaTypes.ObjectId,
