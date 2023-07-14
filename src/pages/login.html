@@ -1,24 +1,49 @@
 <extends src="layouts/landing.html" locals='{"title": "Welcome"}'>
     <block name="headbody">
         <div>
-            <form class="flex flex-col justify-center text-center items-center m-0 pb-6">
+            <form class="flex flex-col justify-center text-center items-center m-0 pb-6" id="login_form">
                 <h1 class="text-xl max-w-3xl mx-auto my-10 font-bold">Login</h1>
                 <div class="flex landing-email-input items-center py-4 px-4 rounded-md">
                     <img src="assets/mail.svg" />
                     <input
                         type="text"
                         class="bg-transparent ml-3 p-0 border-none ring-0 focus:ring-0"
-                        placeholder="Email or Username" />
+                        placeholder="Email or Username"
+                        id="login" />
                 </div>
                 <div class="flex landing-email-input items-center py-4 px-4 rounded-md mt-4">
                     <img src="assets/mail.svg" />
                     <input
                         type="password"
                         class="bg-transparent ml-3 p-0 border-none ring-0 focus:ring-0"
-                        placeholder="Password" />
+                        placeholder="Password"
+                        id="password" />
                 </div>
                 <button class="btn-landing mt-6" type="submit">Login</button>
             </form>
         </div>
+    </block>
+    <block name="script">
+        <script>
+            async function login_process(event) {
+                event.preventDefault();
+                const login = document.getElementById("login").value;
+                const password = document.getElementById("password").value;
+                const response = await fetch("/api/login", {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ login, password }),
+                });
+                if (response.status == 200) {
+                    window.location = "/overview.html";
+                }
+            }
+            var form = document.getElementById("login_form");
+            form.addEventListener("submit", login_process, true);
+        </script>
     </block>
 </extends>
