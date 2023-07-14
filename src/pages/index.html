@@ -1,1 +1,44 @@
-<extends src="layouts/landing.html" locals='{"title": "Vituum + PostHTML"}'> </extends>
+<extends src="layouts/landing.html" locals='{"title": "Welcome"}'>
+    <block name="headbody">
+        <div class="flex flex-col justify-center text-center items-center">
+            <h1 class="text-5xl max-w-3xl mx-auto mt-24 font-bold">
+                The most innovative platform for competitive programmers
+            </h1>
+            <h3 class="text-base max-w-xl mx-auto mt-6">
+                Get ready to knockout coding contests with our online judge platform where champions are made one line
+                of code at a time!
+            </h3>
+            <div class="flex my-9">
+                <div class="flex landing-email-input items-center py-4 px-4 rounded-md">
+                    <img src="assets/mail.svg" />
+                    <input
+                        type="text"
+                        class="bg-transparent ml-3 p-0 border-none ring-0 focus:ring-0"
+                        placeholder="example@gmail.com" />
+                </div>
+                <a href="signup.html" class="btn-landing ml-2">Get Started</a>
+            </div>
+        </div>
+    </block>
+    <block name="body">
+        <div class="bg-solid text-white section-border py-24">
+            <div
+                class="max-w-7xl mx-auto rounded-md"
+                style="background: linear-gradient(80.46deg, #5450ff 4.34%, #a2a0fc 99.67%)">
+                <div class="py-20 px-16">
+                    <h1 class="text-3xl font-semibold mb-16">
+                        Explore high quality programming problems made by excellent problem setters
+                    </h1>
+                    <h3 class="text-2xl mt-6">New problems are added every week.</h3>
+                    <button href="signup.html" class="btn-landing mt-10" style="background: rgba(0, 0, 0, 0.301961)">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="text-white text-center py-20 section-border bg-solid">
+            <h1 class="text-4xl font-mono">Get started today</h1>
+            <button class="btn-landing mt-14">Sign up</button>
+        </div>
+    </block>
+</extends>
