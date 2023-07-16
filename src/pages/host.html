@@ -1,194 +1,122 @@
 <extends src="layouts/dashboard.html" locals='{"title": "Host a contest"}'>
     <block name="body">
-        <div class="flex justify-between items-center">
-            <h1 class="text-2xl">Host a contest</h1>
-            <div>
-                <button class="btn-secondary mr-2">Save draft</button>
-                <button class="btn-primary">Schedule</button>
-            </div>
-        </div>
-        <div class="flex items-center mt-5">
-            <label class="w-52" for="level">Contest Level</label>
-            <select class="input-text" id="level">
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="expert">Expert</option>
-            </select>
-        </div>
-        <div class="flex items-center mt-5">
-            <label class="w-52" for="date">Contest Date</label>
-            <input type="datetime-local" class="input-text" id="date" />
-        </div>
-        <div class="flex items-center mt-5">
-            <label class="w-52" for="duration">Contest Duration</label>
-            <input id="duration" type="text" class="input-text" />
-        </div>
-        <div class="flex items-center mt-5">
-            <label class="w-52" for="name">Contest Name</label>
-            <input
-                type="text"
-                class="input-text disabled:opacity-60 cursor-not-allowed"
-                disabled
-                value="Codeflow Expert Contest 1" />
-        </div>
-        <div>
-            <h1 class="text-xl mt-8">Problems</h1>
-            <div class="mt-5">
-                <div class="flex items-center mt-7">
-                    <button class="text-white bg-blue-300 border-blue-800 rounded-3xl py-2 px-6 mr-2">Problem A</button>
-                    <button class="text-white rounded-3xl py-2 px-6 mr-2">Problem B</button>
-                    <button class="text-white rounded-3xl py-2 px-6 mr-2">Problem C</button>
-                    <button class="text-white rounded-3xl py-2 px-6 mr-2">Problem D</button>
-                    <button class="text-white rounded-3xl py-2 px-6 mr-2">Problem E</button>
+        <form>
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl">Host a contest</h1>
+                <div>
+                    <button class="btn-secondary mr-2" type="submit" value="draft">Save draft</button>
+                    <button class="btn-primary" type="submit" val="schedule">Schedule</button>
                 </div>
             </div>
-        </div>
-        <div class="flex items-center mt-14">
-            <label class="w-52" for="title">Problem Title</label>
-            <input id="title" type="text" class="input-text" placeholder="A title" />
-        </div>
-        <div class="mt-4">
-            <label class="w-52 text-lg" for="statement">Problem Statement</label>
-        </div>
-        <div class="mt-5">
-            <textarea
-                id="statement"
-                rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Write the problem statement..."></textarea>
-        </div>
-        <div class="mt-5">
-            <label class="w-52 text-lg" for="testcase">Test case inputs</label>
-        </div>
-        <div class="flex items-center mt-4">
-            <button class="btn-primary mr-2">Load inputs</button>
-            <button class="btn-primary">Load outputs</button>
-            <h1 class="ml-11 text-sm">The inputs must be separated by 2 blank spaces in a text file.</h1>
-        </div>
-        <div class="flex items-center mt-10 mb-4">
-            <label class="mr-9" for="tcNo">Number of sample test cases</label>
-            <input type="number" class="input-text" id="tcNo" />
-        </div>
-        <table class="test-table">
-            <thead>
-                <tr>
-                    <th>Input 1</th>
-                    <th>Output 1</th>
-                </tr>
-            </thead>
-            <tbody class="bg-blue-300">
-                <tr class="font-mono">
-                    <td>
-                        <p>2</p>
-                        <p>66 6</p>
-                        <p>4 4</p>
-                    </td>
-                    <td>
-                        <p>2</p>
-                        <p>1 2</p>
-                        <p>3 4</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="test-table">
-            <thead>
-                <tr>
-                    <th>Input 1</th>
-                    <th>Output 1</th>
-                </tr>
-            </thead>
-            <tbody class="bg-blue-300">
-                <tr class="font-mono">
-                    <td>
-                        <p>2</p>
-                        <p>66 6</p>
-                        <p>4 4</p>
-                    </td>
-                    <td>
-                        <p>2</p>
-                        <p>1 2</p>
-                        <p>3 4</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="test-table">
-            <thead>
-                <tr>
-                    <th>Input 1</th>
-                    <th>Output 1</th>
-                </tr>
-            </thead>
-            <tbody class="bg-blue-300">
-                <tr class="font-mono">
-                    <td>
-                        <p>2</p>
-                        <p>66 6</p>
-                        <p>4 4</p>
-                    </td>
-                    <td>
-                        <p>2</p>
-                        <p>1 2</p>
-                        <p>3 4</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="test-table">
-            <thead>
-                <tr>
-                    <th>Input 1</th>
-                    <th>Output 1</th>
-                </tr>
-            </thead>
-            <tbody class="bg-blue-300">
-                <tr class="font-mono">
-                    <td>
-                        <p>2</p>
-                        <p>66 6</p>
-                        <p>4 4</p>
-                    </td>
-                    <td>
-                        <p>2</p>
-                        <p>1 2</p>
-                        <p>3 4</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="test-table">
-            <thead>
-                <tr>
-                    <th>Input 1</th>
-                    <th>Output 1</th>
-                </tr>
-            </thead>
-            <tbody class="bg-blue-300">
-                <tr class="font-mono">
-                    <td>
-                        <p>2</p>
-                        <p>66 6</p>
-                        <p>4 4</p>
-                    </td>
-                    <td>
-                        <p>2</p>
-                        <p>1 2</p>
-                        <p>3 4</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="mt-6">
-            <label class="w-52 text-lg" for="ccode">Checker code</label>
-        </div>
-        <div class="mt-3">
-            <textarea
-                id="ccode"
-                rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="insert the code"></textarea>
-        </div>
+            <div class="flex items-center mt-5">
+                <label class="w-52" for="level">Contest Level</label>
+                <select class="input-text" id="level" required>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="expert">Expert</option>
+                </select>
+            </div>
+            <div class="flex items-center mt-5">
+                <label class="w-52" for="date">Contest Date</label>
+                <input type="datetime-local" class="input-text" id="date" required />
+            </div>
+            <div class="flex items-center mt-5">
+                <label class="w-52" for="duration">Contest Duration</label>
+                <input id="duration" type="text" required pattern="[0-9]{2}:[0-9]{2}" class="input-text" />
+            </div>
+            <div class="flex items-center mt-5">
+                <label class="w-52" for="name">Contest Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    class="input-text disabled:opacity-60 cursor-not-allowed"
+                    disabled
+                    value="" />
+            </div>
+            <div>
+                <h1 class="text-xl mt-8">Problems</h1>
+                <div class="mt-5">
+                    <div class="flex items-center mt-7">
+                        <button
+                            id="togglea"
+                            type="button"
+                            class="text-white bg-blue-300 border-blue-800 rounded-3xl py-2 px-6 mr-2">
+                            Problem A
+                        </button>
+                        <button id="toggleb" type="button" class="text-white rounded-3xl py-2 px-6 mr-2">
+                            Problem B
+                        </button>
+                        <button id="togglec" type="button" class="text-white rounded-3xl py-2 px-6 mr-2">
+                            Problem C
+                        </button>
+                        <button id="toggled" type="button" class="text-white rounded-3xl py-2 px-6 mr-2">
+                            Problem D
+                        </button>
+                        <button id="togglee" type="button" class="text-white rounded-3xl py-2 px-6 mr-2">
+                            Problem E
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center mt-14">
+                <label class="w-52" for="title">Problem Title</label>
+                <input id="title" type="text" class="input-text" placeholder="A title" />
+            </div>
+            <div class="mt-4">
+                <label class="w-52 text-lg" for="statement">Problem Statement</label>
+            </div>
+            <div class="mt-5">
+                <textarea
+                    id="statement"
+                    rows="4"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Write the problem statement..."></textarea>
+            </div>
+            <div class="mt-5">
+                <label class="w-52 text-lg" for="testcase">Test case inputs</label>
+            </div>
+            <div class="flex items-center mt-4">
+                <button class="btn-primary mr-2">Load inputs</button>
+                <button class="btn-primary">Load outputs</button>
+                <h1 class="ml-11 text-sm">The inputs must be separated by 2 blank spaces in a text file.</h1>
+            </div>
+            <div class="flex items-center mt-10 mb-4">
+                <label class="mr-9" for="tcNo">Number of sample test cases</label>
+                <input type="number" class="input-text" id="tcNo" />
+            </div>
+            <table class="test-table">
+                <thead>
+                    <tr>
+                        <th>Input 1</th>
+                        <th>Output 1</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-blue-300">
+                    <tr class="font-mono">
+                        <td>
+                            <p>2</p>
+                            <p>66 6</p>
+                            <p>4 4</p>
+                        </td>
+                        <td>
+                            <p>2</p>
+                            <p>1 2</p>
+                            <p>3 4</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mt-6">
+                <label class="w-52 text-lg" for="ccode">Checker code</label>
+            </div>
+            <div class="mt-3">
+                <textarea
+                    id="ccode"
+                    rows="4"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="insert the code"></textarea>
+            </div>
+        </form>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </block>
 </extends>

@@ -15,8 +15,6 @@ const app = express();
 
 app.use(json());
 app.use(cookieParser());
-app.use(express.static("dist/"));
-app.use("/assets", express.static("assets/"));
 
 app.use("/api", [authRouter, contestsRouter]);
 
