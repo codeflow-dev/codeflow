@@ -9,7 +9,8 @@ const router = Router();
 
 router.get("/contests/upcoming", async (req, res) => {
     try {
-        const info = await Contest.find({ contestDate: { $gt: new Date() } }).select(
+        const currentDate = new Date();
+        const info = await Contest.find({ contestDate: { $gt: currentDate } }).select(
             "level round contestDate duration"
         );
         const upcoming = info.map(({ level, round, contestDate, duration }) => ({
@@ -25,13 +26,27 @@ router.get("/contests/upcoming", async (req, res) => {
 
 router.get("/contests/past", async (req, res) => {
     try {
-        const info = await Contest.find({ startDate: { $lt: new Date() } }).populate("problems");
+        const currentDate = new Date();
+        const info = await Contest.find({
+            $expr: {
+                $lt: [
+                    {
+                        $add: ["$contestDate", "$duration"],
+                    },
+                    currentDate,
+                ],
+            },
+        }).populate("problems");
         const past = info.map((contest) => ({
             contestName: `Codeflow ${contest.level} Contest ${contest.round}`,
-            problemNames: contest.problems.map((problem) => problem.title),
+            problems: contest.problems.map(({ _id, title }) => ({
+                _id,
+                title,
+            })),
         }));
         res.status(200).json(past);
     } catch (err) {
+        console.error(err);
         res.status(500).json({ message: err.message });
     }
 });
