@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.js";
 import contestsRouter from "./routes/contests.js";
+import problemsRouter from "./routes/problems.js";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -15,7 +16,7 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 
-app.use("/api", [authRouter, contestsRouter]);
+app.use("/api", [authRouter, contestsRouter, problemsRouter]);
 
 app.listen(port, () => {
     console.log("Server started");
