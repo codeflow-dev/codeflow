@@ -5,9 +5,7 @@ const contestSchema = new Schema({
         type: String,
         enum: ["Beginner", "Intermediate", "Expert"],
     },
-    startDate:Date,
     round: Number,
-    duration: Number,
     setter: {
         type: SchemaTypes.ObjectId,
         ref: "User",
@@ -18,6 +16,8 @@ const contestSchema = new Schema({
             ref: "Problem",
         },
     ],
+    contestDate: Date,
+    duration: Number,
 });
 
 contestSchema.pre("save", async function (next) {
