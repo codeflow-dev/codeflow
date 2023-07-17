@@ -10,121 +10,17 @@
                         <th>Solved by</th>
                     </tr>
                 </thead>
-                <tbody class="bg-blue-300">
-                    <tr>
-                        <td>1A</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>1B</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>1C</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>1D</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>1E</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>2A</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>2B</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>2C</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>2D</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>2E</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>3A</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>3B</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>3C</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>3D</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>3E</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>4A</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>4B</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>4C</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>4D</td>
-                        <td><a href="problem.html">Test Title</a></td>
-                        <td>800</td>
-                        <td>12300</td>
-                    </tr>
+                <tbody class="bg-blue-300" 
+                    x-data="{'problemset': []}"
+                    x-init="problemset = await (await fetch('/api/problems')).json()">
+                    <template x-for="problem in problemset">
+                        <tr>
+                            <td x-text="problem.id"></td>
+                            <td><a href="problem.html" x-text="problem.title"></a></td>
+                            <td>800</td>
+                            <td>12300</td>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
         </div>
