@@ -7,35 +7,34 @@ import { assertString } from "../util.js";
 
 const router = Router();
 
-router.get("/contests/upcoming",async(req,res)=>{
-    try{
-      const info=await Contest.find({startDate:{$gt:new Date()}}).select("level round startDate duration")
-      
-      const upcoming=info.map(({level,round,startDate,duration})=>({
-        contestName: `Codeflow ${level} Contest ${round}`,
-        startDate,
-        duration
-      }))
-      res.status(200).json(upcoming)
-    } catch(err){
-      res.status(500).json({message: err.message})
-    }
-  })
-
-  router.get("/contests/past", async (req, res) => {
+router.get("/contests/upcoming", async (req, res) => {
     try {
-      const info = await Contest.find({ startDate: { $lt: new Date() } }).populate("problems")
-      
-      const past = info.map((contest) => ({
-        contestName : `Codeflow ${contest.level} Contest ${contest.round}`,
-        problemNames : contest.problems.map((problem) => problem.title)
-      }))
-  
-      res.status(200).json(past)
+        const info = await Contest.find({ contestDate: { $gt: new Date() } }).select(
+            "level round contestDate duration"
+        );
+        const upcoming = info.map(({ level, round, contestDate, duration }) => ({
+            contestName: `Codeflow ${level} Contest ${round}`,
+            contestDate,
+            duration,
+        }));
+        res.status(200).json(upcoming);
     } catch (err) {
-      res.status(500).json({ message: err.message })
+        res.status(500).json({ message: err.message });
     }
-  })
+});
+
+router.get("/contests/past", async (req, res) => {
+    try {
+        const info = await Contest.find({ startDate: { $lt: new Date() } }).populate("problems");
+        const past = info.map((contest) => ({
+            contestName: `Codeflow ${contest.level} Contest ${contest.round}`,
+            problemNames: contest.problems.map((problem) => problem.title),
+        }));
+        res.status(200).json(past);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
     try {
