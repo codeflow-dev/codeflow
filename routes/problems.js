@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/problems", async (req, res) => {
     try {
-        const data = await Problem.find().select("_id title");
+        const data = await Problem.find().select("_id id title");
         res.status(200).json(data);
     } catch {
         res.status(500).json({
