@@ -7,6 +7,7 @@ const contestSchema = new Schema({
     },
     startDate:Date,
     round: Number,
+    duration: Number,
     setter: {
         type: SchemaTypes.ObjectId,
         ref: "User",
