@@ -33,22 +33,19 @@
                         <th>Contest Name</th>
                         <th>Date & Time</th>
                         <th>Duration</th>
-                        <th>Registration</th>
                     </tr>
                 </thead>
-                <tbody class="bg-blue-300">
-                    <tr>
-                        <td><a href="contest.html">Codeflow Beginner Contest 11</a></td>
-                        <td>04-Aug-2023<br />04:30PM</td>
-                        <td>1:30:00</td>
-                        <td><a href="#">Register</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="contest.html">Codeflow Intermediate Contest 12</a></td>
-                        <td>04-Aug-2023<br />04:30PM</td>
-                        <td>1:30:00</td>
-                        <td><a href="#">Register</a></td>
-                    </tr>
+                <tbody
+                    class="bg-blue-300"
+                    x-data="{'upcoming': []}"
+                    x-init="upcoming = await (await fetch('/api/contests/upcoming')).json()">
+                    <template x-for="contest in upcoming">
+                        <tr>
+                            <td><a href="contest.html" x-text="contest.contestName"></a></td>
+                            <td x-text="formattedDate(contest.contestDate)"></td>
+                            <td x-text="formattedDuration(contest.duration)"></td>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
         </div>
@@ -65,145 +62,43 @@
                         <th>E</th>
                     </tr>
                 </thead>
-                <tbody class="bg-blue-300">
-                    <tr>
-                        <td><a href="#">Codeflow Beginner Contest 10</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Mex Tree</a></td>
-                        <td><a href="#">Maximum Sum</a></td>
-                        <td><a href="#">New Palindrome</a></td>
-                        <td><a href="#">Musical Puzzele</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 11</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Expert Contest 10</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Mex Tree</a></td>
-                        <td><a href="#">Maximum Sum</a></td>
-                        <td><a href="#">New Palindrome</a></td>
-                        <td><a href="#">Musical Puzzele</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 10</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 9</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Mex Tree</a></td>
-                        <td><a href="#">Maximum Sum</a></td>
-                        <td><a href="#">New Palindrome</a></td>
-                        <td><a href="#">Musical Puzzele</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Expert Contest 9</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Beginner Contest 9</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 8</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Expert Contest 8</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Beginner Contest 8</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 7</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Expert Contest 7</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 6</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Expert Contest 6</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 5</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Beginner Contest 7</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Codeflow Intermediate Contest 4</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                        <td><a href="#">Bully Short</a></td>
-                    </tr>
+                <tbody
+                    class="bg-blue-300"
+                    x-data="{'contests': []}"
+                    x-init="contests = await (await fetch('/api/contests/past')).json()">
+                    <template x-for="contest in contests">
+                        <tr>
+                            <td><a href="#" x-text="contest.contestName"></a></td>
+                            <template x-for="problem in contest.problems">
+                                <td><a href="#" x-text="problem.title"></a></td>
+                            </template>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
         </div>
+    </block>
+    <block name="extrabody">
+        <script>
+            function padZero(value) {
+                return value < 10 ? "0" + value : value;
+            }
+            function formattedDuration(milliseconds) {
+                const totalSeconds = Math.floor(milliseconds / 1000);
+                const hours = Math.floor(totalSeconds / 3600);
+                const remainingSeconds = totalSeconds % 3600;
+                const minutes = Math.floor(remainingSeconds / 60);
+                const formattedTime = `${padZero(hours)}:${padZero(minutes)}`;
+                return formattedTime;
+            }
+            function formattedDate(mongoDate) {
+                const jsDate = new Date(mongoDate);
+                const formattedDate = `${jsDate.getFullYear()}-${padZero(jsDate.getMonth() + 1)}-${padZero(
+                    jsDate.getDate()
+                )} ${padZero(jsDate.getHours())}:${padZero(jsDate.getMinutes())}:${padZero(jsDate.getSeconds())}`;
+                return formattedDate;
+            }
+        </script>
+        <script type="module" src="/src/scripts/alpinestart.js"></script>
     </block>
 </extends>
