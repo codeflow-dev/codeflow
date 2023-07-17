@@ -7,6 +7,38 @@ import { assertString } from "../util.js";
 
 const router = Router();
 
+router.get("/contests/current", async (req, res) => {
+    try {
+        const currentDate = new Date();
+        const contest = await Contest.findOne({
+            $expr: {
+                $and: [
+                    { $gte: [currentDate, "$contestDate"] },
+                    { $lte: [currentDate, { $add: ["$contestDate", "$duration"] }] },
+                ],
+            },
+        }).populate("problems");
+        if (!contest) {
+            res.status(200).json([]);
+        } else {
+            const current = {
+                contestName: `Codeflow ${contest.level} Contest ${contest.round}`,
+                problems: contest.problems.map(({ _id, id, title }) => ({
+                    _id,
+                    id,
+                    title,
+                })),
+                contestDate: contest.contestDate,
+                duration: contest.duration,
+            };
+            res.status(200).json([current]);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: err.message });
+    }
+});
+
 router.get("/contests/upcoming", async (req, res) => {
     try {
         const currentDate = new Date();
