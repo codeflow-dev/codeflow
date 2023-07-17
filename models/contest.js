@@ -16,6 +16,8 @@ const contestSchema = new Schema({
             ref: "Problem",
         },
     ],
+    contestDate: Date,
+    duration: Number,
 });
 
 contestSchema.pre("save", async function (next) {

@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const problemSchema = new Schema({
+    id: String,
     title: String,
     statement: String,
     testCases: [
