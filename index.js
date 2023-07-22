@@ -36,6 +36,10 @@ app.get("/contest/:id", (req, res) => {
     res.render("contest");
 });
 
+app.get("/problem/:id", (req, res) => {
+    res.render("problem");
+});
+
 app.listen(port, () => {
     console.log("Server started");
 });

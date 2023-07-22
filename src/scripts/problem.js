@@ -6,35 +6,39 @@ import { indentWithTab } from "@codemirror/commands";
 import { cpp } from "@codemirror/lang-cpp";
 import { Compartment } from "@codemirror/state";
 import { oneDark } from "@codemirror/theme-one-dark";
+import Alpine from "alpinejs";
+import Route from "route-parser";
 
-marked.use(markedKatex({ throwOnError: false }));
-const html =
-    marked.parse(`Happy PMP is freshman and he is learning about algorithmic problems. He enjoys playing algorithmic games a lot.
+const route = new Route("/problem/:id");
 
-One of the seniors gave Happy PMP a nice game. He is given two permutations of numbers 1 through n and is asked to convert the first one to the second. In one move he can remove the last number from the permutation of numbers and inserts it back in an arbitrary position. He can either insert last number between any two consecutive numbers, or he can place it at the beginning of the permutation.
+function getId() {
+    return route.match(window.location.pathname).id;
+}
 
-Happy PMP has an algorithm that solves the problem. But it is not fast enough. He wants to know the minimum number of moves to convert the first permutation to the second.
+document.addEventListener("alpine:init", () => {
+    Alpine.data("problem", () => ({
+        async init() {
+            try {
+                const c = await fetch(`/api/problem/${getId()}`, {});
+                const j = await c.json();
+                this.problem = j;
+                console.log(this.problem);
+            } catch (err) {
+                console.error(err);
+            }
+        },
+        problem: {},
+        statement() {
+            if (this.problem.statement) {
+                return marked.parse(this.problem.statement);
+            } else {
+                return "";
+            }
+        },
+    }));
+});
 
-## Input
-
-The first line contains a single integer $n$ ($1≤n≤2 \\cdot 10^5$) — the quantity of the numbers in the both given permutations.
-
-Next line contains n space-separated integers — the first permutation. Each number between 1 to n will appear in the permutation exactly once.
-
-Next line describe the second permutation in the same format.
-
-Schrodinger's equation:
-
-$$
-i \\hbar \\frac{\\partial}{\\partial t} \\Psi = H \\Psi
-$$
-
-## Output
-
-Print a single integer denoting the minimum number of moves required to convert the first permutation to the second.
-`);
-
-document.getElementById("statement").innerHTML = html;
+Alpine.start();
 
 let language = new Compartment(),
     theme = new Compartment();
