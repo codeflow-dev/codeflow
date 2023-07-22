@@ -1,58 +1,30 @@
 <extends src="layouts/dashboard.html" locals='{"title": "Contest"}'>
     <block name="body">
-        <div class="py-8 bg-blue-500 rounded-lg border-blue-200 border">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Problem</th>
-                        <th>Name</th>
-                        <th>Submit</th>
-                        <th>Solved by</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-blue-300">
-                    <tr>
-                        <td>A</td>
-                        <td>Test Title</td>
-                        <td>
-                            <img src="assets/submit.svg" class="w-6 h-6" />
-                        </td>
-                        <td>12300</td>
-                    </tr>
-                    <tr>
-                        <td>B</td>
-                        <td>Test Title</td>
-                        <td>
-                            <img src="assets/submit.svg" />
-                        </td>
-                        <td>11300</td>
-                    </tr>
-                    <tr>
-                        <td>C</td>
-                        <td>Test Title</td>
-                        <td>
-                            <img src="assets/submit.svg" />
-                        </td>
-                        <td>9300</td>
-                    </tr>
-                    <tr>
-                        <td>D</td>
-                        <td>Test Title</td>
-                        <td>
-                            <img src="assets/submit.svg" />
-                        </td>
-                        <td>600</td>
-                    </tr>
-                    <tr>
-                        <td>E</td>
-                        <td>Test Title</td>
-                        <td>
-                            <img src="assets/submit.svg" />
-                        </td>
-                        <td>300</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div x-data="contest()">
+            <h1 x-text="contest.contestName" class="text-lg font-semibold mb-3"></h1>
+            <div class="py-8 bg-blue-500 rounded-lg border-blue-200 border">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Name</th>
+                            <th>Solved by</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-blue-300">
+                        <template x-for="problem in contest.problems">
+                            <tr>
+                                <td><a x-bind:href="'/problem/'+problem._id" x-text="problem.id"></a></td>
+                                <td><a x-bind:href="'/problem/'+problem._id" x-text="problem.title"></a></td>
+                                <td>100</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </block>
+    <block name="extrabody">
+        <script type="module" src="/src/scripts/contest.js"></script>
     </block>
 </extends>
