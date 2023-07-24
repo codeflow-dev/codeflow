@@ -12,7 +12,7 @@ document.addEventListener("alpine:init", () => {
                 this.duration = j[0].duration;
                 this.updateCountdown();
             } catch (err) {
-                this.contest.contestName = "";
+                this.contestName = "";
             }
         },
         contestName: "",

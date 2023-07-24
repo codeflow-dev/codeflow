@@ -1,8 +1,9 @@
 import vituum from "vituum";
 import posthtml from "@vituum/vite-plugin-posthtml";
 import modules from "posthtml-modules";
+import { defineConfig } from "vite";
 
-export default {
+export default defineConfig({
     plugins: [
         vituum(),
         posthtml({
@@ -19,4 +20,4 @@ export default {
             },
         },
     },
-};
+});

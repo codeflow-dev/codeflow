@@ -46,6 +46,7 @@ router.get("/contests/upcoming", async (req, res) => {
             "level round contestDate duration"
         );
         const upcoming = info.map(({ level, round, contestDate, duration }) => ({
+            round,
             contestName: `Codeflow ${level} Contest ${round}`,
             contestDate,
             duration,
@@ -70,6 +71,7 @@ router.get("/contests/past", async (req, res) => {
             },
         }).populate("problems");
         const past = info.map((contest) => ({
+            round: contest.round,
             contestName: `Codeflow ${contest.level} Contest ${contest.round}`,
             problems: contest.problems.map(({ _id, title }) => ({
                 _id,
@@ -100,6 +102,33 @@ router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
         res.status(401).json({
             error: "Scheduling contest failed",
         });
+    }
+});
+
+router.get("/contest/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const contest = await Contest.findOne({
+            round: id,
+        }).populate("problems");
+        if (!contest) {
+            throw new Error("Contest not found");
+        } else {
+            const current = {
+                contestName: `Codeflow ${contest.level} Contest ${contest.round}`,
+                problems: contest.problems.map(({ _id, id, title }) => ({
+                    _id,
+                    id,
+                    title,
+                })),
+                contestDate: contest.contestDate,
+                duration: contest.duration,
+            };
+            res.status(200).json(current);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: err.message });
     }
 });
 
