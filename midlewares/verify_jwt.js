@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-
 import { secretKey } from "../routes/auth.js";
 
 export async function verifyJWT(req, res, next) {

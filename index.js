@@ -1,10 +1,11 @@
-import { connect } from "mongoose";
-import express, { json } from "express";
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import express, { json } from "express";
+import { connect } from "mongoose";
 import authRouter from "./routes/auth.js";
 import contestsRouter from "./routes/contests.js";
 import problemsRouter from "./routes/problems.js";
+import settingsRouter from "./routes/set.js";
 import submissionRouter from "./routes/submission.js";
 import { renderFile } from "ejs";
 import { fileURLToPath } from "url";
@@ -24,7 +25,7 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 
-app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter]);
+app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter]);
 
 app.use(express.static("dist/"));
 app.use("/assets", express.static("assets/"));
