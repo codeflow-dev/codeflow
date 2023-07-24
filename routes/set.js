@@ -4,7 +4,20 @@ import User from "../models/user.js";
 import { assertStringArray } from "../util.js";
 
 const router = Router();
-
+router.get("/settings", verifyJWT, async (req, res) => {
+  try {
+    const loggedUser = await User.findById(req.payload.user);
+    
+    res.status(200).json({
+      name: loggedUser.name,
+      username: loggedUser.username,
+      email: loggedUser.email,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "User search failed" });
+  }
+});
 router.post("/settings", verifyJWT, async (req, res) => {
   try {
     const { name, username, password, confirmPassword, email } = req.body;
@@ -40,6 +53,7 @@ router.post("/settings", verifyJWT, async (req, res) => {
     loggedUser.password = password;
     loggedUser.username = username;
     loggedUser.email = email;
+    console.log({loggedUser})
     await loggedUser.save();
 
     res.status(200).json({ message: "Profile Updated!" });

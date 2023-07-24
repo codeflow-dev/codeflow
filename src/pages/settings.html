@@ -32,12 +32,17 @@
                                     <label class="ml-12" for="username">User Name</label>
                                 </div>
                                 <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
-                                    <input type="text" class="settextbox" id="username" required />
+                                    <input
+                                        x-text="info.username"
+                                        type="text"
+                                        class="settextbox"
+                                        id="username"
+                                        required />
                                 </div>
                             </div>
                             <div class="flex items-center py-4 px-20 rounded-md">
                                 <div class="w-52">
-                                    <label class="ml-12" for="password">New Password</label>
+                                    <label class="ml-12" for="password">Password</label>
                                 </div>
                                 <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
                                     <input type="password" class="settextbox" id="password" required />
@@ -69,6 +74,25 @@
             </div>
         </div>
         <script>
+            async function loggedInfo() {
+                try {
+                    const response = await fetch("/api/settings", {
+                        method: "GET",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                    });
+                    const data = await response.json();
+                    console.log({ data });
+                    document.getElementById("name").value = data.name;
+                    document.getElementById("username").value = data.username;
+                    document.getElementById("email").value = data.email;
+                } catch (err) {
+                    console.error("User search failed!");
+                }
+            }
             async function process(event) {
                 event.preventDefault();
                 const email = document.getElementById("email").value;
@@ -97,6 +121,7 @@
                     window.location = "/index.html";
                 }
             }
+            loggedInfo();
             var settingsForm = document.getElementById("settingsForm");
             settingsForm.addEventListener("submit", process);
         </script>
