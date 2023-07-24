@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.js";
 import contestsRouter from "./routes/contests.js";
 import problemsRouter from "./routes/problems.js";
+import submissionRouter from "./routes/submission.js";
 import { renderFile } from "ejs";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
@@ -23,7 +24,7 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 
-app.use("/api", [authRouter, contestsRouter, problemsRouter]);
+app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter]);
 
 app.use(express.static("dist/"));
 app.use("/assets", express.static("assets/"));
