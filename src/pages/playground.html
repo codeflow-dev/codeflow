@@ -5,7 +5,7 @@
             .cm-editor {
                 height: 100%;
             }
-            .container{
+            .container {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: 1fr 1fr;
@@ -13,21 +13,21 @@
                 padding: 10px;
                 box-sizing: border-box;
             }
-            .content-large{
+            .content-large {
                 grid-row-start: 1;
                 grid-row-end: span 3;
                 grid-column-start: 1;
                 grid-column-end: 3;
             }
-            .content-small{
+            .content-small {
                 display: grid;
                 grid-template-rows: 50px 1fr;
             }
-            .content-small-title{
+            .content-small-title {
                 grid-row-start: 1;
                 grid-row-end: 2;
             }
-            .container-small div{
+            .container-small div {
                 border: 1px solid #000000;
             }
         </style>
@@ -36,49 +36,46 @@
         <div class="container">
             <div class="content-large flex flex-col">
                 <div class="py-2 px-2">
-                    <select class="input-text" id="lang">
+                    <select class="input-text" id="language">
                         <option value="cpp">C++20 Clang++ 15.0.7</option>
-                        <option value="python">Python 3.11.3</option>
+                        <option value="py">Python 3.11.3</option>
                         <option value="java">Java OpenJDK 17.0.7</option>
                     </select>
-                    <button class="btn-primary" style="margin-left: 20px;">Share</button>
+                    <button class="btn-primary" style="margin-left: 20px">Share</button>
                     <input
-                            x-model="problem.title"
-                            id="title"
-                            type="text"
-                            class="input-text"
-                            style="margin-left: 20px;"
-                     />
-                     <button class="btn-primary" style="margin-left: 20px;">Copy</button>
+                        x-model="problem.title"
+                        id="title"
+                        type="text"
+                        class="input-text"
+                        style="margin-left: 20px" />
+                    <button class="btn-primary" style="margin-left: 20px">Copy</button>
                 </div>
                 <div id="editor" class="flex-1"></div>
-                <div class="py-2 px-2">
-                    <button class="btn-primary">Submit Code</button>
+            </div>
+            <div class="content-small">
+                <div class="content-small-title"><p style="font-size: x-large">Input</p></div>
+                <div>
+                    <textarea
+                        rows="13"
+                        cols="50"
+                        name="comment"
+                        style="background-color: #282c34"
+                        id="input"></textarea>
+                    <br />
+                    <button class="btn-primary" id="run">Run</button>
                 </div>
             </div>
-
-
             <div class="content-small">
-               <div class="content-small-title"><p style="font-size: x-large;">Input</p></div>
-               <div>
-                <form action="#">
-                    <textarea rows="13" cols="50" name="comment" style="background-color: #282c34;">
-                    </textarea>
-                    <br>
-                    <button class="btn-primary">Run</button>
-                </form>
-               </div>
-            </div>
-            <div class="content-small">
-                <div class="content-small-title"><p style="font-size: x-large;">Output</p></div>
+                <div class="content-small-title"><p style="font-size: x-large">Output</p></div>
                 <div>
-                <form action="#">
-                    <textarea rows="13" cols="50" name="comment" style="background-color: #282c34;">
-                    </textarea>
-                </form>
-               </div>
+                    <textarea
+                        rows="13"
+                        cols="50"
+                        name="comment"
+                        style="background-color: #282c34"
+                        id="output"></textarea>
+                </div>
             </div>
-
         </div>
     </block>
     <block name="extrabody">
