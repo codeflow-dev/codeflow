@@ -4,6 +4,7 @@ import { verifySetter } from "../midlewares/verify_setter.js";
 import Contest from "../models/contest.js";
 import Problem from "../models/problem.js";
 import { assertString } from "../util.js";
+import TestCase from "../models/testcase.js";
 
 const router = Router();
 
@@ -87,11 +88,29 @@ router.get("/contests/past", async (req, res) => {
 
 router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
     try {
-        const { level, problems, contestDate, duration } = req.body;
+        let { level, problems, contestDate, duration } = req.body;
+        console.log(problems);
         assertString(level);
-        const contest = new Contest({ level, contestDate, duration });
-        const probs = await Problem.insertMany(problems);
-        const probIds = probs.map((p) => p._id);
+        const round = (await Contest.countDocuments()) + 1;
+        const contest = new Contest({ level, contestDate, duration, round });
+        await contest.save();
+
+        const insertedProblems = [];
+        for (const problem of problems) {
+            const testCases = problem.testCases.map((testCase) => new TestCase(testCase));
+            const insertedTestCases = await TestCase.insertMany(testCases);
+
+            const newProblem = new Problem({
+                ...problem,
+                contest: contest._id,
+                testCases: insertedTestCases.map((tc) => tc._id),
+            });
+
+            const savedProblem = await newProblem.save();
+            insertedProblems.push(savedProblem);
+        }
+
+        const probIds = insertedProblems.map((p) => p._id);
         contest.problems = probIds;
         contest.setter = req.payload.id;
         await contest.save();
@@ -99,7 +118,7 @@ router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
         res.status(200).json(contest);
     } catch (err) {
         console.error(err);
-        res.status(401).json({
+        res.status(442).json({
             error: "Scheduling contest failed",
         });
     }

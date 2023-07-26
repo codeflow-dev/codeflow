@@ -31,6 +31,27 @@ router.post("/submission", verifyJWT, async (req, res) => {
     }
 });
 
+async function judgeCpp(tmpFileName, problem) {
+    try {
+        await execa("g++", [tmpFileName, "-o", tmpFileName + ".bin"]);
+    } catch (err) {
+        const { stderr } = err;
+        return { message: "Compilation Error", stderr };
+    }
+    for (let i = 0; i < problem.testCases.length; i++) {
+        const testCase = problem.testCases[i];
+        try {
+            const { stdout } = await execa(tmpFileName + ".bin", [], { input: testCase.input });
+            if (stdout != testCase.output) {
+                return { message: `Wrong answer on test case ${i + 1}`, stdout };
+            }
+        } catch (err) {
+            const { stderr } = err;
+            return { message: `Runtime Error on test case ${i + 1}`, stderr };
+        }
+    }
+}
+
 router.post("/playground", async (req, res) => {
     try {
         const { code, language, input } = req.body;
@@ -52,27 +73,6 @@ router.post("/playground", async (req, res) => {
         res.status(400).json(err);
     }
 });
-
-async function judgeCpp(tmpFileName, problem) {
-    try {
-        await execa("g++", [tmpFileName, "-o", tmpFileName + ".bin"]);
-    } catch (err) {
-        const { stderr } = err;
-        return { message: "Compilation Error", stderr };
-    }
-    for (let i = 0; i < problem.testCases.length; i++) {
-        const testCase = problem.testCases[i];
-        try {
-            const { stdout } = await execa(tmpFileName + ".bin", [], { input: testCase.input });
-            if (stdout != testCase.output) {
-                return { message: `Wrong answer on test case ${i + 1}`, stdout };
-            }
-        } catch (err) {
-            const { stderr } = err;
-            return { message: `Runtime Error on test case ${i + 1}`, stderr };
-        }
-    }
-}
 
 async function runCpp(tmpFileName, input) {
     try {

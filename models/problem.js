@@ -1,15 +1,14 @@
-import { Schema, model } from "mongoose";
+import { Schema, SchemaTypes, model } from "mongoose";
 
 const problemSchema = new Schema({
     id: String,
     title: String,
     statement: String,
-    testCases: [
-        {
-            input: String,
-            output: String,
-        },
-    ],
+    contest: {
+        type: SchemaTypes.ObjectId,
+        ref: "Contest",
+    },
+    testCases: [{ type: SchemaTypes.ObjectId, ref: "TestCase" }],
     samples: Number,
     checker: String,
 });

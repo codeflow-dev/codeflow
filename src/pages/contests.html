@@ -16,7 +16,7 @@
                     </div>
                     <div class="font-semibold running-problems flex flex-col">
                         <template x-for="problem in problems">
-                            <a href="problem.html" x-text="`${problem.id}. ${problem.title}`"></a>
+                            <a x-bind:href="'/problem/'+problem._id" x-text="`${problem.id}. ${problem.title}`"></a>
                         </template>
                     </div></div
             ></template>
@@ -69,7 +69,7 @@
                         <tr>
                             <td><a x-bind:href="'/contest/'+contest.round" x-text="contest.contestName"></a></td>
                             <template x-for="problem in contest.problems">
-                                <td><a href="#" x-text="problem.title"></a></td>
+                                <td><a x-bind:href="'/problem/'+problem._id" x-text="problem.title"></a></td>
                             </template>
                         </tr>
                     </template>

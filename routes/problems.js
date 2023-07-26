@@ -16,7 +16,8 @@ router.get("/problems", async (req, res) => {
 
 router.get("/problem/:id", async (req, res) => {
     try {
-        const problem = await Problem.findById(req.params.id);
+        let problem = await Problem.findById(req.params.id).populate("testCases");
+        problem.testCases = problem.testCases.splice(0, 2);
         res.status(200).json(problem);
     } catch (err) {
         console.error(err);

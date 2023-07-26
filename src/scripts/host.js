@@ -76,17 +76,17 @@ document.addEventListener("alpine:init", () => {
                 if (this.problems[index].testCases.length == 0) {
                     for (let i = 0; i < inputs.length; i++) {
                         if (inout == "in") {
-                            this.problems[index].testCases.push({ in: inputs[i] });
+                            this.problems[index].testCases.push({ input: inputs[i] });
                         } else {
-                            this.problems[index].testCases.push({ out: inputs[i] });
+                            this.problems[index].testCases.push({ output: inputs[i] });
                         }
                     }
                 } else {
                     for (let i = 0; i < inputs.length; i++) {
                         if (inout == "in") {
-                            this.problems[index].testCases[i].in = inputs[i];
+                            this.problems[index].testCases[i].input = inputs[i];
                         } else {
-                            this.problems[index].testCases[i].out = inputs[i];
+                            this.problems[index].testCases[i].output = inputs[i];
                         }
                     }
                 }
@@ -97,7 +97,7 @@ document.addEventListener("alpine:init", () => {
             const { level, problems } = this;
             const contestDate = new Date(this.contestDate).getTime();
             const [h, m] = this.duration.split(":");
-            const duration = (parseInt(h, 10) * 60 + parseInt(h, 10)) * 60 * 1000;
+            const duration = (parseInt(h, 10) * 60 + parseInt(m, 10)) * 60 * 1000;
             const response = await fetch("/api/contests", {
                 method: "POST",
                 headers: {
@@ -113,7 +113,7 @@ document.addEventListener("alpine:init", () => {
                 }),
             });
             if (response.status == 200) {
-                alert("Contest scheduled");
+                window.location = "/contests.html";
             }
         },
     }));
