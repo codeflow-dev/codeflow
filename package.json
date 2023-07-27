@@ -52,6 +52,7 @@
         "marked-katex-extension": "^2.1.0",
         "moment": "^2.29.4",
         "mongoose": "^7.3.2",
-        "route-parser": "^0.0.5"
+        "route-parser": "^0.0.5",
+        "toastify-js": "^1.12.0"
     }
 }

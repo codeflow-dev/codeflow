@@ -7,18 +7,16 @@ const submissionSchema = new Schema({
         type: SchemaTypes.ObjectId,
         ref: "Problem",
     },
-    contest: {
-        type: SchemaTypes.ObjectId,
-        ref: "Contest",
-    },
-    submittedat: {
+    duringContest: Boolean,
+    submittedAt: {
         type: Date,
         default: () => Date.now(),
     },
-    submittedby: {
+    submittedBy: {
         type: SchemaTypes.ObjectId,
         ref: "User",
     },
+    message: String,
 });
 
 const Submission = model("Submission", submissionSchema);

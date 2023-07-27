@@ -1,25 +1,34 @@
-<nav class="bg-blue-500 w-64 flex flex-col pt-5 border-r border-blue-300">
-    <div class="flex w-full justify-between px-4 mb-9">
-        <h2 class="text-xl font-medium"><a href="/">codeflow</a></h2>
-        <img src="/assets/menu.svg" alt="Menu" />
+<nav class="bg-blue-500 w-64 flex flex-col justify-between pt-5 border-r border-blue-300">
+    <div>
+        <div class="flex w-full justify-between px-4 mb-9">
+            <h2 class="text-xl font-medium"><a href="/">codeflow</a></h2>
+            <img src="/assets/menu.svg" alt="Menu" />
+        </div>
+        <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Overview' ? 'bg-blue-300' : ''}}">
+            <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
+            <a href="/overview.html">Overview</a>
+        </div>
+        <div
+            class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Contests' || title == 'Contest' ? 'bg-blue-300' : ''}}">
+            <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
+            <a href="/contests.html">Contests</a>
+        </div>
+        <div
+            class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Problemset' || title == 'Problem' ? 'bg-blue-300' : ''}}">
+            <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
+            <a href="/problemset.html">Problemset</a>
+        </div>
+        <div
+            class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Playground' || title == 'Playground' ? 'bg-blue-300' : ''}}">
+            <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
+            <a href="/playground.html">Playground</a>
+        </div>
     </div>
-    <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Overview' ? 'bg-blue-300' : ''}}">
-        <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
-        <a href="/overview.html">Overview</a>
-    </div>
-    <div
-        class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Contests' || title == 'Contest' ? 'bg-blue-300' : ''}}">
-        <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
-        <a href="/contests.html">Contests</a>
-    </div>
-    <div
-        class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Problemset' || title == 'Problem' ? 'bg-blue-300' : ''}}">
-        <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
-        <a href="/problemset.html">Problemset</a>
-    </div>
-    <div
-        class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Playground' || title == 'Playground' ? 'bg-blue-300' : ''}}">
-        <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
-        <a href="/playground.html">Playground</a>
+    <div>
+        <div
+            class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Playground' || title == 'Playground' ? 'bg-blue-300' : ''}}">
+            <img class="ml-1.5 mr-2.5" src="/assets/overview.svg" alt="Overview" />
+            <a href="/login.html">Log out</a>
+        </div>
     </div>
 </nav>

@@ -6,25 +6,41 @@ import { tmpdir } from "os";
 import path, { dirname } from "path";
 import { readFile, writeFile } from "fs/promises";
 import Problem from "../models/problem.js";
+import Submission from "../models/submission.js";
 
 const router = Router();
+
+function running(contest) {
+    const endTime = new Date(contest.contestDate).getTime() + contest.duration;
+    const currentTime = new Date().getTime();
+    if (currentTime < endTime) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 router.post("/submission", verifyJWT, async (req, res) => {
     try {
         const { code, language, id } = req.body;
-        const p = await Problem.findById(id);
+        const p = await Problem.findById(id).populate("testCases").populate("contest");
         if (!p) {
             throw new Error("Problem not found");
         }
+        const duringContest = running(p.contest);
+        const submittedBy = req.payload.id;
         const tmpFileName = path.join(tmpdir(), randomBytes(32).toString("hex") + "." + language);
         await writeFile(tmpFileName, code);
+        const submission = new Submission({ code, language, problem: p._id, duringContest, submittedBy });
+        let result;
         if (language == "cpp") {
-            res.status(200).json(await judgeCpp(tmpFileName, p));
+            result = await judgeCpp(tmpFileName, p);
         } else {
-            res.status(200).json({
-                message: "Language not supported",
-            });
+            result = { message: "Language not supported" };
         }
+        submission.message = result.message;
+        await submission.save();
+        res.status(200).json(result);
     } catch (err) {
         console.error(err);
         res.status(400).json(err);
@@ -35,21 +51,28 @@ async function judgeCpp(tmpFileName, problem) {
     try {
         await execa("g++", [tmpFileName, "-o", tmpFileName + ".bin"]);
     } catch (err) {
-        const { stderr } = err;
-        return { message: "Compilation Error", stderr };
+        console.error(err);
+        return { message: "Compilation Error" };
     }
     for (let i = 0; i < problem.testCases.length; i++) {
         const testCase = problem.testCases[i];
         try {
-            const { stdout } = await execa(tmpFileName + ".bin", [], { input: testCase.input });
-            if (stdout != testCase.output) {
-                return { message: `Wrong answer on test case ${i + 1}`, stdout };
+            const { stdout } = await execa(tmpFileName + ".bin", [], {
+                input: testCase.input + "\n",
+            });
+            if (stdout.trim() != testCase.output.trim()) {
+                return { message: `Wrong answer on test case ${i + 1}` };
             }
         } catch (err) {
-            const { stderr } = err;
-            return { message: `Runtime Error on test case ${i + 1}`, stderr };
+            console.error(err);
+            const { isCanceled } = err;
+            if (isCanceled) {
+                return { message: `Time limit exceeded on test case ${i + 1}` };
+            }
+            return { message: `Runtime Error on test case ${i + 1}` };
         }
     }
+    return { message: "Accepted" };
 }
 
 router.post("/playground", async (req, res) => {
