@@ -10,6 +10,12 @@ export default defineConfig({
             root: "./src",
             plugins: [modules({ attributeAsLocals: true })],
         }),
+        {
+            name: "postbuild",
+            closeBundle: async () => {
+                console.log("http://localhost:3000");
+            },
+        },
     ],
     server: {
         port: 5173,
@@ -18,6 +24,11 @@ export default defineConfig({
             "/api": {
                 target: "http://localhost:3000",
             },
+        },
+    },
+    build: {
+        watch: {
+            include: "src/**/*",
         },
     },
 });

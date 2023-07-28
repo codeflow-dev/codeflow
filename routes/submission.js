@@ -14,9 +14,9 @@ function running(contest) {
     const endTime = new Date(contest.contestDate).getTime() + contest.duration;
     const currentTime = new Date().getTime();
     if (currentTime < endTime) {
-        return true;
+        return contest._id;
     } else {
-        return false;
+        return null;
     }
 }
 
@@ -27,11 +27,11 @@ router.post("/submission", verifyJWT, async (req, res) => {
         if (!p) {
             throw new Error("Problem not found");
         }
-        const duringContest = running(p.contest);
-        const submittedBy = req.payload.id;
+        const contest = running(p.contest);
+        const submittedBy = req.payload.user;
         const tmpFileName = path.join(tmpdir(), randomBytes(32).toString("hex") + "." + language);
         await writeFile(tmpFileName, code);
-        const submission = new Submission({ code, language, problem: p._id, duringContest, submittedBy });
+        const submission = new Submission({ code, language, problem: p._id, contest, submittedBy });
         let result;
         if (language == "cpp") {
             result = await judgeCpp(tmpFileName, p);

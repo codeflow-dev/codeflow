@@ -31,6 +31,7 @@ router.get("/contests/current", async (req, res) => {
                 })),
                 contestDate: contest.contestDate,
                 duration: contest.duration,
+                round: contest.round,
             };
             res.status(200).json([current]);
         }
@@ -112,7 +113,7 @@ router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
 
         const probIds = insertedProblems.map((p) => p._id);
         contest.problems = probIds;
-        contest.setter = req.payload.id;
+        contest.setter = req.payload.user;
         await contest.save();
         await contest.populate("problems");
         res.status(200).json(contest);

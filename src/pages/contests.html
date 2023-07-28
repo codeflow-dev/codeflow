@@ -10,7 +10,10 @@
                         <h1 class="text-2xl mt-4" x-text="contestName"></h1>
                         <h1 class="font-mono text-2xl mt-4" x-text="countdown"></h1>
                         <br />
-                        <a href="contest.html" class="py-4 px-6 rounded-md mt-10" style="background-color: #6e6aff">
+                        <a
+                            x-bind:href="'/contest/'+round"
+                            class="py-4 px-6 rounded-md mt-10"
+                            style="background-color: #6e6aff">
                             Enter
                         </a>
                     </div>

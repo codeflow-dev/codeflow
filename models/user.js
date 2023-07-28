@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { Schema, model } from "mongoose";
+import { Schema, SchemaTypes, model } from "mongoose";
 
 const userSchema = new Schema({
     name: String,
@@ -7,6 +7,12 @@ const userSchema = new Schema({
     username: String,
     password: String,
     setter: { type: Boolean, default: false },
+    transactions: [
+        {
+            type: SchemaTypes.ObjectId,
+            ref: "Transaction",
+        },
+    ],
 });
 
 userSchema.pre("save", async function (next) {

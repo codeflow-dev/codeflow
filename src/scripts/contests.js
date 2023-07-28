@@ -10,11 +10,13 @@ document.addEventListener("alpine:init", () => {
                 this.problems = j[0].problems;
                 this.contestDate = j[0].contestDate;
                 this.duration = j[0].duration;
+                this.round = j[0].round;
                 this.updateCountdown();
             } catch (err) {
                 this.contestName = "";
             }
         },
+        round: 0,
         contestName: "",
         problems: [],
         contestDate: "",
