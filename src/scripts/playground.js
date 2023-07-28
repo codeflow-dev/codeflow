@@ -16,7 +16,6 @@ let editor = new EditorView({
 document.getElementById("run").addEventListener("click", async (event) => {
     event.preventDefault();
     const code = editor.state.doc.text.join("\n");
-    console.log(code);
     const language = document.getElementById("language").value;
     const input = document.getElementById("input").value;
     const r = await fetch("/api/playground", {
@@ -30,3 +29,24 @@ document.getElementById("run").addEventListener("click", async (event) => {
     const j = await r.json();
     document.getElementById("output").value = j.stdout;
 });
+
+document.getElementById("share").addEventListener("click", async (event) => {
+    event.preventDefault();
+    const code = editor.state.doc.text.join("\n");
+    const language = document.getElementById("language").value;
+    const r = await fetch("/api/code_share", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description: code, language }),
+    });
+    const j = await r.json();
+    document.getElementById("link").value = "http://localhost:3000/playground/"+j.id;
+});
+
+document.getElementById("copy").addEventListener("click", (event) => {
+    navigator.clipboard.writeText(document.getElementById("link").value);
+})
+
