@@ -7,6 +7,7 @@ import contestsRouter from "./routes/contests.js";
 import problemsRouter from "./routes/problems.js";
 import settingsRouter from "./routes/set.js";
 import submissionRouter from "./routes/submission.js";
+import codeShareRouter from "./routes/codeShare.js"
 import { renderFile } from "ejs";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
@@ -25,7 +26,7 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 
-app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter]);
+app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter, codeShareRouter]);
 
 app.use(express.static("dist/"));
 app.use("/assets", express.static("assets/"));
