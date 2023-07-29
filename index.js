@@ -29,7 +29,6 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 
-
 app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter, codeShareRouter, admin]);
 
 app.use(express.static("dist/"));

@@ -4,7 +4,9 @@ export async function verifySetter(req, res, next) {
     try {
         const user = await User.findById(req.payload.user);
         if ((await user.rating()) < 1500) {
-            throw new Error("Not setter");
+            if (!user.admin) {
+                throw new Error("Not setter");
+            }
         }
         next();
     } catch (err) {

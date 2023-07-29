@@ -4,6 +4,9 @@ import Contest from "../models/contest.js";
 import User from "../models/user.js";
 import Problem from "../models/problem.js";
 import Transaction from "../models/transaction.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const agenda = new Agenda({
     db: { address: process.env.MONGODB_URI || "mongodb://localhost/codeflow", collection: "jobs" },
