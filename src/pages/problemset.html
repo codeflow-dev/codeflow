@@ -6,19 +6,22 @@
                     <tr>
                         <th>Problem</th>
                         <th>Name</th>
-                        <th>Rank</th>
+                        <th>Rating</th>
                         <th>Solved by</th>
                     </tr>
                 </thead>
-                <tbody class="bg-blue-300" 
+                <tbody
+                    class="bg-blue-300"
                     x-data="{'problemset': []}"
                     x-init="problemset = await (await fetch('/api/problems')).json()">
                     <template x-for="problem in problemset">
                         <tr>
-                            <td x-text="problem.id"></td>
-                            <td><a href="problem.html" x-text="problem.title"></a></td>
-                            <td>800</td>
-                            <td>12300</td>
+                            <td>
+                                <a x-bind:href="'/problem/'+problem._id" x-text="problem.round + problem.id"></a>
+                            </td>
+                            <td><a x-bind:href="'/problem/'+problem._id" x-text="problem.title"></a></td>
+                            <td x-text="problem.rating"></td>
+                            <td x-text="problem.solvedBy"></td>
                         </tr>
                     </template>
                 </tbody>
