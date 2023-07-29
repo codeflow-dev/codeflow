@@ -26,7 +26,7 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 
-app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter,admin]);
+app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter, admin]);
 
 app.use(express.static("dist/"));
 app.use("/assets", express.static("assets/"));

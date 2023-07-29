@@ -95,7 +95,6 @@ document.addEventListener("alpine:init", () => {
         },
         async submitForm() {
             const { level, problems } = this;
-            const contestDate = new Date(this.contestDate).getTime();
             const [h, m] = this.duration.split(":");
             const duration = (parseInt(h, 10) * 60 + parseInt(m, 10)) * 60 * 1000;
             const response = await fetch("/api/contests", {
@@ -108,7 +107,7 @@ document.addEventListener("alpine:init", () => {
                 body: JSON.stringify({
                     level,
                     problems,
-                    contestDate,
+                    contestDate: null,
                     duration,
                 }),
             });

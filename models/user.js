@@ -7,7 +7,8 @@ const userSchema = new Schema({
     username: String,
     password: String,
     setter: { type: Boolean, default: false },
-    rating: { type: Number, default:0},
+    rating: { type: Number, default: 0 },
+    admin: { type: Boolean, default: false },
 });
 
 userSchema.pre("save", async function (next) {

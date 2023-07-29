@@ -47,47 +47,30 @@
     </block>
     <block name="extrabody">
         <script>
-            async function fetchContests() {
-                // const response = await fetch("/api/admin");
-                const response = await fetch("/api/admin", {
-                    method: "GET",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                });
-                const data = await response.json();
-                console.log({ data });
-                if (response.ok) {
-                    const contestsData = await response.json();
-                    // window.xData.contests = contestsData;
-                } else {
-                    console.error("Failed to fetch contests");
-                }
-            }
             async function accept(id) {
                 console.log("Accepting contest with id:", id);
 
                 const dateInput = document.getElementById(id);
                 const date = dateInput.value;
-
+                if (date == "") {
+                    alert("Please choose a date for the contest");
+                    return;
+                }
                 console.log("Date:", date);
 
                 const response = await fetch(`/api/admin/accept/${id}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    // credentials: "include",
                     body: JSON.stringify({ date }),
                 });
 
                 console.log("Response:", response);
 
                 if (response.ok) {
-                    alert("contest accepted.Reload to see change");
+                    window.location = window.location;
                     console.log("Contest accepted successfully!");
-                    //fetchContests();
                 } else {
+                    alert("Failed to approve contest");
                     console.log("Failed to accept the contest");
                 }
             }
@@ -97,14 +80,11 @@
 
                 const response = await fetch(`/api/admin/reject/${id}`, { method: "DELETE" });
                 if (response.ok) {
-                    alert("contest rejected!Reload to see change");
-                    console.log("Contest rejected successfully!");
-                    // fetchContests();
+                    window.location = window.location;
                 } else {
                     console.error("Failed to reject the contest");
                 }
             }
-            fetchContests();
         </script>
         <script type="module" src="/src/scripts/alpinestart.js"></script>
     </block>

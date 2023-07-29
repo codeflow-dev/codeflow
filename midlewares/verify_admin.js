@@ -1,11 +1,10 @@
 import User from "../models/user.js";
 
-export async function verifySetter(req, res, next) {
+export async function verifyAdmin(req, res, next) {
     try {
         const user = await User.findById(req.payload.user);
-        if (user.rating >= 1500) user.setter = true;
-        if (!user.setter) {
-            throw new Error("Not setter");
+        if (!user.admin) {
+            throw new Error("Not admin");
         }
         next();
     } catch (err) {

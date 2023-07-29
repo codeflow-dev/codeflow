@@ -18,7 +18,7 @@ const contestSchema = new Schema({
     ],
     contestDate: Date,
     duration: Number,
-    published: {type:Boolean, default:false},
+    published: { type: Boolean, default: false },
 });
 
 const Contest = model("Contest", contestSchema);

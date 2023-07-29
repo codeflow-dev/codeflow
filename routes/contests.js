@@ -62,14 +62,19 @@ router.get("/contests/past", async (req, res) => {
     try {
         const currentDate = new Date();
         const info = await Contest.find({
-            $expr: {
-                $lt: [
-                    {
-                        $add: ["$contestDate", "$duration"],
+            $and: [
+                {
+                    contestDate: { $ne: null },
+                    $expr: {
+                        $lt: [
+                            {
+                                $add: ["$contestDate", "$duration"],
+                            },
+                            currentDate,
+                        ],
                     },
-                    currentDate,
-                ],
-            },
+                },
+            ],
         }).populate("problems");
         const past = info.map((contest) => ({
             round: contest.round,
