@@ -43,7 +43,7 @@
                     x-init="upcoming = await (await fetch('/api/contests/upcoming')).json()">
                     <template x-for="contest in upcoming">
                         <tr>
-                            <td><a x-bind:href="'/contest/'+contest.round" x-text="contest.contestName"></a></td>
+                            <td x-text="contest.contestName"></td>
                             <td x-text="formattedDate(contest.contestDate)"></td>
                             <td x-text="formattedDuration(contest.duration)"></td>
                         </tr>
