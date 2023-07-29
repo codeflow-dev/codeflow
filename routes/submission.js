@@ -47,6 +47,19 @@ router.post("/submission", verifyJWT, async (req, res) => {
     }
 });
 
+//GET ALL THE SUBMISSIONS
+router.get('/submission', verifyJWT, async(req,res)=>{
+    try{
+        
+        const data=await Submission.find({submittedBy: req.payload.user}).populate("problem");
+        res.status(200).json(data);
+    }catch{
+        res.status(500).json({
+            message: "There was a server side error.",
+        });
+    }
+});
+
 async function judgeCpp(tmpFileName, problem) {
     try {
         await execa("g++", [tmpFileName, "-o", tmpFileName + ".bin"]);
