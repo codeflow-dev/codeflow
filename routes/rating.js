@@ -14,7 +14,9 @@ const agenda = new Agenda({
 
 agenda.define("rating", async (job) => {
     const { id } = job.attrs.data;
+    console.log(`Scheduling for ${id}`);
     updateUserRatings(id);
+    updateProblemRatings(id);
 });
 
 async function updateUserRatings(id) {

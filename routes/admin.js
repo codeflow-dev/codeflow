@@ -2,6 +2,7 @@ import { Router } from "express";
 import Contest from "../models/contest.js";
 import { verifyAdmin } from "../midlewares/verify_admin.js";
 import { verifyJWT } from "../midlewares/verify_jwt.js";
+import { agenda } from "./rating.js";
 
 const router = Router();
 
@@ -25,9 +26,11 @@ router.get("/admin", [verifyJWT, verifyAdmin], async (req, res) => {
 router.post("/admin/accept/:id", [verifyJWT, verifyAdmin], async (req, res) => {
     try {
         const id = req.params.id;
-        console.log(req.body);
         const date = new Date(req.body.date).getTime();
-        await Contest.findByIdAndUpdate(id, { published: true, contestDate: date });
+        const contest = await Contest.findByIdAndUpdate(id, { published: true, contestDate: date });
+        await agenda.schedule(date + contest.duration, ["rating"], {
+            id: contest._id,
+        });
         res.status(200).json({ message: "Contest is accepted!!!" });
     } catch (err) {
         console.error(err);
