@@ -1,78 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>codeflow</title>
-        <link rel="stylesheet" href="/src/styles/index.css" />
-    </head>
-
-    <body>
-        <div class="min-h-screen max-h-screen flex overflow-hidden bg-blue-800 text-white" id="frk">
-            <module href="/src/components/sidebar.html" title="{{ title }}"></module>
-
-            <div class="flex-1 flex flex-col">
-                <div class="bg-blue-500 py-4 px-7 font-medium text-lg border-b border-blue-300">
-                    <h1>Settings</h1>
-                </div>
-                <div class="flex items-center justify-left py-8 w-full mx-auto">
-                    <div class="py-8 bg-blue-500 rounded-r-3xl border-blue-200 border rounded-l-none">
-                        <form id="settingsForm">
-                            <div class="flex items-center py-4 px-20 rounded-md">
-                                <div class="w-52">
-                                    <label class="ml-12" for="name">Name</label>
-                                </div>
-                                <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
-                                    <input type="text" class="settextbox" id="name" required />
-                                </div>
-                            </div>
-                            <div class="flex items-center py-4 px-20 rounded-md">
-                                <div class="w-52">
-                                    <label class="ml-12" for="username">User Name</label>
-                                </div>
-                                <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
-                                    <input
-                                        x-text="info.username"
-                                        type="text"
-                                        class="settextbox"
-                                        id="username"
-                                        required />
-                                </div>
-                            </div>
-                            <div class="flex items-center py-4 px-20 rounded-md">
-                                <div class="w-52">
-                                    <label class="ml-12" for="password">Password</label>
-                                </div>
-                                <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
-                                    <input type="password" class="settextbox" id="password" required />
-                                </div>
-                            </div>
-                            <div class="flex items-center py-4 px-20 rounded-md">
-                                <div class="w-52">
-                                    <label class="ml-12" for="confirmPassword">Confirm Password</label>
-                                </div>
-                                <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
-                                    <input type="password" class="settextbox" id="confirmPassword" required />
-                                </div>
-                            </div>
-                            <div class="flex items-center py-4 px-20 rounded-md">
-                                <div class="w-52">
-                                    <label class="ml-12" for="email">Email</label>
-                                </div>
-                                <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
-                                    <input type="email" class="settextbox" id="email" required />
-                                </div>
-                            </div>
-
-                            <div class="flex mx-32 my-2 justify-center">
-                                <button class="btn-landing mt-8" type="submit">Save Changes</button>
-                            </div>
-                        </form>
+<extends src="layouts/dashboard.html" locals='{"title": "Settings"}'>
+    <block name="body">
+        <div class="mx-8 py-8 bg-blue-500 rounded-xl border-blue-200 border">
+            <form id="settingsForm">
+                <div class="flex items-center py-4 px-20 rounded-md">
+                    <div class="w-52">
+                        <label class="ml-12" for="name">Name</label>
+                    </div>
+                    <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
+                        <input type="text" class="settextbox" id="name" required />
                     </div>
                 </div>
-            </div>
+                <div class="flex items-center py-4 px-20 rounded-md">
+                    <div class="w-52">
+                        <label class="ml-12" for="username">User Name</label>
+                    </div>
+                    <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
+                        <input x-text="info.username" type="text" class="settextbox" id="username" required />
+                    </div>
+                </div>
+                <div class="flex items-center py-4 px-20 rounded-md">
+                    <div class="w-52">
+                        <label class="ml-12" for="password">Password</label>
+                    </div>
+                    <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
+                        <input type="password" class="settextbox" id="password" required />
+                    </div>
+                </div>
+                <div class="flex items-center py-4 px-20 rounded-md">
+                    <div class="w-52">
+                        <label class="ml-12" for="confirmPassword">Confirm Password</label>
+                    </div>
+                    <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
+                        <input type="password" class="settextbox" id="confirmPassword" required />
+                    </div>
+                </div>
+                <div class="flex items-center py-4 px-20 rounded-md">
+                    <div class="w-52">
+                        <label class="ml-12" for="email">Email</label>
+                    </div>
+                    <div class="flex landing-email-input items-center py-4 px-4 rounded-md ml-12 mt-1">
+                        <input type="email" class="settextbox" id="email" required />
+                    </div>
+                </div>
+                <div class="flex mx-32 my-2 justify-center">
+                    <button class="btn-primary mt-8" type="submit">Save Changes</button>
+                </div>
+            </form>
         </div>
+    </block>
+    <block name="extrabody">
         <script>
             async function loggedInfo() {
                 try {
@@ -125,5 +101,5 @@
             var settingsForm = document.getElementById("settingsForm");
             settingsForm.addEventListener("submit", process);
         </script>
-    </body>
-</html>
+    </block>
+</extends>

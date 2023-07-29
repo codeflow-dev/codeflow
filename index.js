@@ -12,6 +12,9 @@ import problemsRouter from "./routes/problems.js";
 import settingsRouter from "./routes/set.js";
 import submissionRouter from "./routes/submission.js";
 
+import codeShareRouter from "./routes/codeShare.js";
+import { updateProblemRatings, updateUserRatings } from "./routes/rating.js";
+
 const __filename = fileURLToPath(import.meta.url); // Get the current file's path
 const __dirname = dirname(__filename); // Get the current directory name
 
@@ -26,7 +29,8 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 
-app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter, admin]);
+
+app.use("/api", [authRouter, contestsRouter, problemsRouter, submissionRouter, settingsRouter, codeShareRouter, admin]);
 
 app.use(express.static("dist/"));
 app.use("/assets", express.static("assets/"));
@@ -43,6 +47,9 @@ app.get("/problem/:id", (req, res) => {
     res.render("problem");
 });
 
+// await updateUserRatings("64c4fa24cd035fb470b3e80b");
+// await updateProblemRatings("64c4fa24cd035fb470b3e80b");
+
 app.listen(port, () => {
-    console.log("Server started");
+    console.log(`Server started at http://localhost:${port}`);
 });

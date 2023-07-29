@@ -31,6 +31,7 @@ router.get("/contests/current", async (req, res) => {
                 })),
                 contestDate: contest.contestDate,
                 duration: contest.duration,
+                round: contest.round,
             };
             res.status(200).json([current]);
         }
@@ -94,7 +95,6 @@ router.get("/contests/past", async (req, res) => {
 router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
     try {
         let { level, problems, contestDate, duration } = req.body;
-        console.log(problems);
         assertString(level);
         const round = (await Contest.countDocuments()) + 1;
         const contest = new Contest({ level, contestDate, duration, round });
@@ -117,7 +117,7 @@ router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
 
         const probIds = insertedProblems.map((p) => p._id);
         contest.problems = probIds;
-        contest.setter = req.payload.id;
+        contest.setter = req.payload.user;
         await contest.save();
         await contest.populate("problems");
         res.status(200).json(contest);

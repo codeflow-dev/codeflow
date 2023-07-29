@@ -10,7 +10,10 @@
                         <h1 class="text-2xl mt-4" x-text="contestName"></h1>
                         <h1 class="font-mono text-2xl mt-4" x-text="countdown"></h1>
                         <br />
-                        <a href="contest.html" class="py-4 px-6 rounded-md mt-10" style="background-color: #6e6aff">
+                        <a
+                            x-bind:href="'/contest/'+round"
+                            class="py-4 px-6 rounded-md mt-10"
+                            style="background-color: #6e6aff">
                             Enter
                         </a>
                     </div>
@@ -40,7 +43,7 @@
                     x-init="upcoming = await (await fetch('/api/contests/upcoming')).json()">
                     <template x-for="contest in upcoming">
                         <tr>
-                            <td><a x-bind:href="'/contest/'+contest.round" x-text="contest.contestName"></a></td>
+                            <td x-text="contest.contestName"></td>
                             <td x-text="formattedDate(contest.contestDate)"></td>
                             <td x-text="formattedDuration(contest.duration)"></td>
                         </tr>

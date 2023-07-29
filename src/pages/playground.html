@@ -7,7 +7,7 @@
             }
             .container {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: auto auto auto;
                 grid-template-rows: 1fr 1fr;
                 gap: 10px;
                 padding: 10px;
@@ -41,14 +41,13 @@
                         <option value="py">Python 3.11.3</option>
                         <option value="java">Java OpenJDK 17.0.7</option>
                     </select>
-                    <button class="btn-primary" style="margin-left: 20px">Share</button>
+                    <button class="btn-primary" style="margin-left: 20px" id="share">Share</button>
                     <input
-                        x-model="problem.title"
-                        id="title"
+                        id="link"
                         type="text"
                         class="input-text"
                         style="margin-left: 20px" />
-                    <button class="btn-primary" style="margin-left: 20px">Copy</button>
+                    <button class="btn-primary" style="margin-left: 20px" id="copy">Copy</button>
                 </div>
                 <div id="editor" class="flex-1"></div>
             </div>

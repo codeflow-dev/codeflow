@@ -50,6 +50,12 @@
     #statement h2 {
         @apply my-2;
     }
+    .landing-email-input {
+        background-color: #1d2331;
+    }
+    .settextbox {
+        @apply bg-transparent p-0 border-none ring-0 focus:ring-0;
+    }
 }
 
 .navbr {
