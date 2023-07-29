@@ -7,10 +7,11 @@ import contestsRouter from "./routes/contests.js";
 import problemsRouter from "./routes/problems.js";
 import settingsRouter from "./routes/set.js";
 import submissionRouter from "./routes/submission.js";
-import codeShareRouter from "./routes/codeShare.js"
+import codeShareRouter from "./routes/codeShare.js";
 import { renderFile } from "ejs";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
+import { updateProblemRatings, updateUserRatings } from "./routes/rating.js";
 
 const __filename = fileURLToPath(import.meta.url); // Get the current file's path
 const __dirname = dirname(__filename); // Get the current directory name
@@ -42,6 +43,9 @@ app.get("/contest/:id", (req, res) => {
 app.get("/problem/:id", (req, res) => {
     res.render("problem");
 });
+
+// await updateUserRatings("64c4fa24cd035fb470b3e80b");
+// await updateProblemRatings("64c4fa24cd035fb470b3e80b");
 
 app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);

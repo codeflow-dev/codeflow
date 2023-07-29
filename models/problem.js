@@ -11,6 +11,10 @@ const problemSchema = new Schema({
     testCases: [{ type: SchemaTypes.ObjectId, ref: "TestCase" }],
     samples: Number,
     checker: String,
+    rating: {
+        type: Number,
+        default: 0,
+    },
 });
 
 const Problem = model("Problem", problemSchema);

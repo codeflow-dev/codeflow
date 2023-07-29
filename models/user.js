@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import { Schema, SchemaTypes, model } from "mongoose";
+import Transaction from "./transaction.js";
 
 const userSchema = new Schema({
     name: String,
@@ -11,9 +12,16 @@ const userSchema = new Schema({
         {
             type: SchemaTypes.ObjectId,
             ref: "Transaction",
+            default: [],
         },
     ],
 });
+
+userSchema.methods.rating = async function () {
+    const { transactions } = this;
+    const t = await Transaction.find({ _id: { $in: transactions } });
+    return t.reduce((a, b) => a + b.delta, 0);
+};
 
 userSchema.pre("save", async function (next) {
     try {

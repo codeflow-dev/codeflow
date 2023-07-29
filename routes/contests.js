@@ -90,7 +90,6 @@ router.get("/contests/past", async (req, res) => {
 router.post("/contests", [verifyJWT, verifySetter], async (req, res) => {
     try {
         let { level, problems, contestDate, duration } = req.body;
-        console.log(problems);
         assertString(level);
         const round = (await Contest.countDocuments()) + 1;
         const contest = new Contest({ level, contestDate, duration, round });
