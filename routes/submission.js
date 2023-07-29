@@ -35,6 +35,10 @@ router.post("/submission", verifyJWT, async (req, res) => {
         let result;
         if (language == "cpp") {
             result = await judgeCpp(tmpFileName, p);
+        } else if (language == "py") {
+            result = await judgePython(tmpFileName, p);
+        } else if (language == "java") {
+            result = await judgeJava(tmpFileName, p);
         } else {
             result = { message: "Language not supported" };
         }
@@ -48,12 +52,11 @@ router.post("/submission", verifyJWT, async (req, res) => {
 });
 
 //GET ALL THE SUBMISSIONS
-router.get('/submission', verifyJWT, async(req,res)=>{
-    try{
-        
-        const data=await Submission.find({submittedBy: req.payload.user}).populate("problem");
+router.get("/submission", verifyJWT, async (req, res) => {
+    try {
+        const data = await Submission.find({ submittedBy: req.payload.user }).populate("problem");
         res.status(200).json(data);
-    }catch{
+    } catch {
         res.status(500).json({
             message: "There was a server side error.",
         });
@@ -71,6 +74,66 @@ async function judgeCpp(tmpFileName, problem) {
         const testCase = problem.testCases[i];
         try {
             const { stdout } = await execa(tmpFileName + ".bin", [], {
+                input: testCase.input + "\n",
+            });
+            if (stdout.trim() != testCase.output.trim()) {
+                return { message: `Wrong answer on test case ${i + 1}` };
+            }
+        } catch (err) {
+            console.error(err);
+            const { isCanceled } = err;
+            if (isCanceled) {
+                return { message: `Time limit exceeded on test case ${i + 1}` };
+            }
+            return { message: `Runtime Error on test case ${i + 1}` };
+        }
+    }
+    return { message: "Accepted" };
+}
+
+async function judgePython(tmpFileName, problem) {
+    for (let i = 0; i < problem.testCases.length; i++) {
+        const testCase = problem.testCases[i];
+        try {
+            const { stdout } = await execa("python3", [tmpFileName], { input: testCase.input + "\n" });
+            if (stdout.trim() != testCase.output.trim()) {
+                return { message: `Wrong answer on test case ${i + 1}` };
+            }
+        } catch (err) {
+            console.error(err);
+            const { isCanceled } = err;
+            if (isCanceled) {
+                return { message: `Time limit exceeded on test case ${i + 1}` };
+            }
+            return { message: `Runtime Error on test case ${i + 1}` };
+        }
+    }
+    return { message: "Accepted" };
+}
+
+async function judgeJava(tmpFileName, problem) {
+    const code = await readFile(tmpFileName);
+    const regex = /public\s+class\s+([a-zA-Z_$][a-zA-Z\d_$]*)/;
+    const match = code.toString().match(regex);
+    let className;
+    if (match && match[1]) {
+        className = match[1];
+    } else {
+        return { message: "Public class not found", stdout: "" };
+    }
+    tmpFileName = path.join(tmpdir(), className + ".java");
+    await writeFile(tmpFileName, code);
+    try {
+        await execa("javac", [tmpFileName], { cwd: dirname(tmpFileName) });
+    } catch (err) {
+        console.error(err);
+        return { message: "Compilation Error" };
+    }
+    for (let i = 0; i < problem.testCases.length; i++) {
+        const testCase = problem.testCases[i];
+        try {
+            const { stdout } = await execa("java", [className], {
+                cwd: dirname(tmpFileName),
                 input: testCase.input + "\n",
             });
             if (stdout.trim() != testCase.output.trim()) {

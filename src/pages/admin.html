@@ -22,9 +22,7 @@
                             <td x-text="contest.contestName"></td>
                             <td>
                                 <template x-for="problem in contest.problems">
-                                    <a
-                                        x-bind:href="'/problem/' + problem.problemId"
-                                        x-text="`${problem.problemId} `"></a>
+                                    <a x-bind:href="'/problem/' + problem.problemId" x-text="`${problem.charId} `"></a>
                                 </template>
                             </td>
                             <td>

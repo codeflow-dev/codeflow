@@ -13,7 +13,8 @@ router.get("/admin", [verifyJWT, verifyAdmin], async (req, res) => {
             contestName: `Codeflow ${contest.level} Contest ${contest.round}`,
             contestId: contest._id.toString(),
             problems: contest.problems.map((problem) => ({
-                problemId: problem.id,
+                charId: problem.id,
+                problemId: problem._id,
             })),
         }));
         res.status(200).json(contestInfo);
