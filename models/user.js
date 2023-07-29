@@ -8,6 +8,7 @@ const userSchema = new Schema({
     username: String,
     password: String,
     setter: { type: Boolean, default: false },
+    admin: { type: Boolean, default: false },
     transactions: [
         {
             type: SchemaTypes.ObjectId,

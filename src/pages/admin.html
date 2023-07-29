@@ -1,0 +1,91 @@
+<extends src="layouts/dashboard.html" locals='{"title": "Admin"}'>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script>
+    <block name="body">
+        <div class="py-8 bg-blue-500 rounded-lg border-blue-200 border">
+            <div class="text-center py-3 mb-2">
+                <h1 class="text-xl font-bold">Pending Confirmation</h1>
+            </div>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Contest Name</th>
+                        <th>Problems</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody
+                    class="bg-blue-300"
+                    x-data="{'contests': []}"
+                    x-init="contests = await (await fetch('/api/admin')).json()">
+                    <template x-for="contest in contests">
+                        <tr>
+                            <td x-text="contest.contestName"></td>
+                            <td>
+                                <template x-for="problem in contest.problems">
+                                    <a
+                                        x-bind:href="'/problem/' + problem.problemId"
+                                        x-text="`${problem.problemId} `"></a>
+                                </template>
+                            </td>
+                            <td>
+                                <div class="flex space-x-2">
+                                    <!-- Pass contest.id to accept and reject functions -->
+                                    <button class="btn-accept" x-on:click="accept(contest.contestId)">Accept</button>
+                                    <button class="btn-reject" x-on:click="reject(contest.contestId)">Reject</button>
+                                    <input
+                                        type="datetime-local"
+                                        class="input-text"
+                                        x-bind:id="contest.contestId"
+                                        required />
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </block>
+    <block name="extrabody">
+        <script>
+            async function accept(id) {
+                console.log("Accepting contest with id:", id);
+
+                const dateInput = document.getElementById(id);
+                const date = dateInput.value;
+                if (date == "") {
+                    alert("Please choose a date for the contest");
+                    return;
+                }
+                console.log("Date:", date);
+
+                const response = await fetch(`/api/admin/accept/${id}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ date }),
+                });
+
+                console.log("Response:", response);
+
+                if (response.ok) {
+                    window.location = window.location;
+                    console.log("Contest accepted successfully!");
+                } else {
+                    alert("Failed to approve contest");
+                    console.log("Failed to accept the contest");
+                }
+            }
+
+            async function reject(id) {
+                console.log("Rejecting contest with id:", id);
+
+                const response = await fetch(`/api/admin/reject/${id}`, { method: "DELETE" });
+                if (response.ok) {
+                    window.location = window.location;
+                } else {
+                    console.error("Failed to reject the contest");
+                }
+            }
+        </script>
+        <script type="module" src="/src/scripts/alpinestart.js"></script>
+    </block>
+</extends>
