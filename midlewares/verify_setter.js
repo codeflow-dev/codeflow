@@ -3,7 +3,7 @@ import User from "../models/user.js";
 export async function verifySetter(req, res, next) {
     try {
         const user = await User.findById(req.payload.user);
-        if ((await user.rating()) < 1500) {
+        if ((await user.rating()) < 100) {
             if (!user.admin) {
                 throw new Error("Not setter");
             }

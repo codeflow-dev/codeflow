@@ -31,13 +31,15 @@
     </div>
     <div>
         <div
-            class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Settings' || title == 'Playground' ? 'bg-blue-300' : ''}}">
+            id="settings"
+            class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium {{ title == 'Settings' || title == 'Playground' ? 'bg-blue-300' : ''}}"
+            style="display: none">
             <img class="ml-1.5 mr-2.5" src="/assets/settings.svg" alt="Overview" />
             <a href="/settings.html">Settings</a>
         </div>
-        <div class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium">
+        <div id="logout" class="mx-1.5 my-0.5 flex py-2.5 rounded-md font-medium" style="display: none">
             <img class="ml-1.5 mr-2.5" src="/assets/logout.svg" alt="Overview" />
-            <a href="/login.html">Log out</a>
+            <a href="/api/logout">Log out</a>
         </div>
     </div>
 </nav>
