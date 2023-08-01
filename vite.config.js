@@ -1,6 +1,7 @@
 import vituum from "vituum";
 import posthtml from "@vituum/vite-plugin-posthtml";
 import modules from "posthtml-modules";
+import topLevelAwait from "vite-plugin-top-level-await";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
                 console.log("http://localhost:3000");
             },
         },
+        topLevelAwait(),
     ],
     server: {
         port: 5173,

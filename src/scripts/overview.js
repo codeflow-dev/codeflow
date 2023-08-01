@@ -77,3 +77,13 @@ let chart = new Chart(atx, {
         ],
     },
 });
+
+async function loadData() {
+    const data = await fetch("/api/user");
+    const user = await data.json();
+    document.getElementById("rating").innerText = user.rating;
+    document.getElementById("contestCount").innerText = user.contestCount;
+    document.getElementById("solvedProblemsCount").innerText = user.solvedProblemsCount;
+}
+
+await loadData();
