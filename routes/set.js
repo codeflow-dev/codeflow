@@ -85,4 +85,30 @@ router.get("/user", verifyJWT, async (req, res) => {
     }
 });
 
+router.get("/ratings", verifyJWT, async (req, res) => {
+    try {
+        let { transactions } = await User.findById(req.payload.user).populate({
+            path: "transactions",
+            model: "Transaction",
+            populate: {
+                path: "contest",
+                model: "Contest",
+            },
+        });
+        let sum = 0;
+        transactions = transactions.map((elem) => ({ delta: elem.delta, contestDate: elem.contest.contestDate }));
+        transactions = transactions.map((elem) => {
+            sum += elem.delta;
+            return {
+                rating: sum,
+                contestDate: elem.contestDate,
+            };
+        });
+        res.status(200).json(transactions);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
 export default router;

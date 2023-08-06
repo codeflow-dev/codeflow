@@ -13,6 +13,10 @@ async function loadUser() {
             if (adminButton) {
                 adminButton.style.display = "inline";
             }
+            const hostButton = document.getElementById("host");
+            if (hostButton) {
+                hostButton.style.display = "inline";
+            }
         }
         if (user.rating >= 100) {
             const hostButton = document.getElementById("host");

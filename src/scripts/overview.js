@@ -1,5 +1,6 @@
 import Chart from "chart.js/auto";
 import "chartjs-adapter-moment";
+import moment from "moment";
 
 const ctx = document.getElementById("bar-chart");
 
@@ -24,6 +25,9 @@ new Chart(ctx, {
     },
 });
 
+let data = await (await fetch("/api/ratings")).json();
+data = data.map((d) => ({ x: moment(new Date(d.contestDate)).format("YYYY-MM-DD HH:mm:ss"), y: d.rating }));
+
 const atx = document.getElementById("line-chart");
 let chart = new Chart(atx, {
     type: "line",
@@ -31,48 +35,7 @@ let chart = new Chart(atx, {
         datasets: [
             {
                 label: "Rating",
-                data: [
-                    {
-                        x: "2023-07-09 00:00:00",
-                        y: 0,
-                    },
-                    {
-                        x: "2023-07-10 00:00:00",
-                        y: 630,
-                    },
-                    {
-                        x: "2023-07-11 00:00:00",
-                        y: 650,
-                    },
-                    {
-                        x: "2023-07-12 00:00:00",
-                        y: 750,
-                    },
-                    {
-                        x: "2023-07-13 00:00:00",
-                        y: 850,
-                    },
-                    {
-                        x: "2023-07-14 00:00:00",
-                        y: 700,
-                    },
-                    {
-                        x: "2023-07-15 00:00:00",
-                        y: 900,
-                    },
-                    {
-                        x: "2023-07-16 00:00:00",
-                        y: 1000,
-                    },
-                    {
-                        x: "2023-07-17 00:00:00",
-                        y: 1100,
-                    },
-                    {
-                        x: "2023-07-18 00:00:00",
-                        y: 800,
-                    },
-                ],
+                data,
             },
         ],
     },
