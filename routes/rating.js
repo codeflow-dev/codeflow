@@ -41,14 +41,15 @@ async function updateUserRatings(id) {
 }
 
 async function updateProblemRatings(id) {
-    const { problems } = await Contest.findById(id);
+    const contest = await Contest.findById(id);
+    const problems = contest.problems;
     for (const problem of problems) {
         const users = await Submission.find({ problem, message: "Accepted" }).populate("submittedBy");
         const userPromises = users.map((u) => User.findById(u.submittedBy._id));
         let userRatings = await Promise.all(userPromises);
         userRatings = userRatings.map((u) => u.rating());
         userRatings = await Promise.all(userRatings);
-        const mode = calculateModeByRange(userRatings, Math.sqrt(userRatings.length));
+        const mode = calculateModeByRange(userRatings, Math.round(Math.sqrt(userRatings.length)));
         const p = await Problem.findById(problem);
         p.rating = mode;
         await p.save();
