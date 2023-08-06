@@ -2,6 +2,7 @@ import Chart from "chart.js/auto";
 import "chartjs-adapter-moment";
 import moment from "moment";
 
+/*
 const ctx = document.getElementById("bar-chart");
 
 new Chart(ctx, {
@@ -24,6 +25,7 @@ new Chart(ctx, {
         },
     },
 });
+*/
 
 let data = await (await fetch("/api/ratings")).json();
 data = data.map((d) => ({ x: moment(new Date(d.contestDate)).format("YYYY-MM-DD HH:mm:ss"), y: d.rating }));
