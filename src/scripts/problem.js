@@ -56,6 +56,14 @@ let editor = new EditorView({
 });
 
 document.getElementById("submitCode").addEventListener("click", async (event) => {
+    let code = "";
+    if (editor.state.doc.children) {
+        for (const c of editor.state.doc.children) {
+            code += c.text.join("\n");
+        }
+    } else {
+        code = editor.state.doc.text.join("\n");
+    }
     event.preventDefault();
     const r = await fetch("/api/submission", {
         method: "POST",
@@ -64,7 +72,7 @@ document.getElementById("submitCode").addEventListener("click", async (event) =>
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            code: editor.state.doc.text.join("\n"),
+            code,
             language: document.getElementById("lang").value,
             id: getId(),
         }),

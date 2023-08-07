@@ -9,7 +9,7 @@
                 of code at a time!
             </h3>
             <div class="flex my-9">
-                <a href="signup.html" class="btn-landing ml-2">Get Started</a>
+                <a href="signup.html" class="btn-landing">Get Started</a>
             </div>
         </div>
     </block>
@@ -23,7 +23,10 @@
                         Explore high quality programming problems made by excellent problem setters
                     </h1>
                     <h3 class="text-2xl mt-6">New problems are added every week.</h3>
-                    <button href="signup.html" class="btn-landing mt-10" style="background: rgba(0, 0, 0, 0.301961)">
+                    <button
+                        onclick="window.location='/signup.html'"
+                        class="btn-landing mt-10"
+                        style="background: rgba(0, 0, 0, 0.301961)">
                         Get Started
                     </button>
                 </div>
@@ -31,7 +34,9 @@
         </div>
         <div class="text-white text-center py-20 section-border bg-solid">
             <h1 class="text-4xl font-mono">Get started today</h1>
-            <button class="btn-landing mt-14">Sign up</button>
+            <button onclick="window.location='/signup.html'" class="btn-landing mt-14" href="signup.html">
+                Sign up
+            </button>
         </div>
     </block>
 </extends>
