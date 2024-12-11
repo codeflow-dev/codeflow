@@ -1,0 +1,30 @@
+services:
+  app:
+    image: codeflow  # Replace with your local image name
+    build:
+      context: .  # Use this if Dockerfile is in the current directory
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/codeflow
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongodb:27017/
+      ME_CONFIG_BASICAUTH: false
+
+volumes:
+  mongo_data:
