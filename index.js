@@ -14,6 +14,7 @@ import submissionRouter from "./routes/submission.js";
 
 import codeShareRouter from "./routes/codeShare.js";
 import { updateProblemRatings, updateUserRatings } from "./routes/rating.js";
+import User from "./models/user.js";
 
 const __filename = fileURLToPath(import.meta.url); // Get the current file's path
 const __dirname = dirname(__filename); // Get the current directory name
@@ -22,7 +23,30 @@ dotenv.config();
 
 const port = process.env.PORT || 3000;
 
-connect(process.env.MONGODB_URI || "mongodb://localhost/codeflow");
+connect(process.env.MONGODB_URI || "mongodb://localhost/codeflow").then(async () => {
+    try {
+        const admins = await User.find({"admin": true});
+        if (admins.length > 0) {
+            console.log("Admin already exists");
+        } else {
+            const admin = new User({
+                name: 'Admin',
+                email: 'admin@admin.com',
+                username: 'admin',
+                password: 'admin',
+                setter: true,
+                admin: true,
+                transactions: []
+            });
+            await admin.save();
+            console.log("Admin username: admin");
+            console.log("Admin password: admin");
+        }
+    } catch (e) {
+        console.log("Error creating admin");
+        console.log(e);
+    }
+});
 
 const app = express();
 
